@@ -10,7 +10,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
 import AccelCard from './components/Cards/AccelCard';
-import GraphTest from './components/TestObjects/GraphTest';
+import GraphTestTwo from './components/TestObjects/GraphTestTwo';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,7 +40,7 @@ export default function App() {
       <Stack.Navigator initialRouteName='Temperature'>
         <Stack.Screen name="DataCard" component={DataCardScreen} options={{ headerTitle: (props) => <HeaderTmp title="DataCard" {...props} />, headerTintColor: '#82B4DD',} }/>
         <Stack.Screen name="Experience" component={ExperienceScreen} options={{ headerTitle: (props) => <HeaderTmp title="Expérience" {...props} />}}  />
-        <Stack.Screen name="Temperature" component={GraphTest} />        
+        <Stack.Screen name="Temperature" component={GraphTestTwo} />        
       </Stack.Navigator>
 
     </NavigationContainer>
