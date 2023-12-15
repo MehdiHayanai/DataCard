@@ -40,9 +40,8 @@ export default function App() {
       <Stack.Navigator initialRouteName='Temperature'>
         <Stack.Screen name="DataCard" component={DataCardScreen} options={{ headerTitle: (props) => <HeaderTmp title="DataCard" {...props} />, headerTintColor: '#82B4DD',} }/>
         <Stack.Screen name="Experience" component={ExperienceScreen} options={{ headerTitle: (props) => <HeaderTmp title="Expérience" {...props} />}}  />
-        <Stack.Screen name="Temperature" component={GraphTest} />        
+        <Stack.Screen name="Temperature" component={AccelCard} />        
       </Stack.Navigator>
-
     </NavigationContainer>
   );
 }

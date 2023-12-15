@@ -18,7 +18,12 @@ export default GraphTest = () => {
         name: 'X-axis',
     }]
     const layout = {
-        width: windowWith*1.3,
+        margin: {
+            t: 25,
+            b: 25,
+            l: 25,
+            r: 25,
+          },
     }
     
     useEffect(() => {
@@ -35,9 +40,16 @@ export default GraphTest = () => {
     }, [])
     return (
         <View style={styles.container}>
-            <Text>Hello world test </Text>
-            <Plotly data={data} layout={layout} style={styles.plotContainer}/>
-            <Text>Hello world test</Text>
+            <View style={styles.plotContainer}>
+                <Plotly data={data} layout={layout}/>
+            </View>
+            <View style={styles.plotContainer}>
+                <Plotly data={data} layout={layout}/>
+            </View>
+            <View style={styles.plotContainer}>
+                <Plotly data={data} layout={layout}/>
+            </View>
+            <Navigation active={"Datacard"} navigation={navigation}/> 
 
         </View>
     )
@@ -48,11 +60,14 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ecf0f1',
         padding: 0,
-        margin: 0,
+        marginTop: 5,
+
     },
     plotContainer : {
-        paddingTop: -50,
-        marginHorizontal: 20,
+        flex: 0.1,
+        backgroundColor: '#ecf0f1',
+        padding: 0,
+        margin: 0,
     },
 
 });
