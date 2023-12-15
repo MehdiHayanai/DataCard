@@ -22,11 +22,15 @@ const navigationInfo = [
     icon: require("../assets/icons/notActive/projet.png"),
     iconActive: require("../assets/icons/navigation/datacard.png"),
     label: 'Projets',
+    path : "Experience",
+
   },
   {
     icon: require("../assets/icons/notActive/historique.png"),
     iconActive: require("../assets/icons/navigation/historique.png"),
     label: 'Historique',
+    path : "Experience",
+
   },
   // Add other navigation items as needed
 ];
