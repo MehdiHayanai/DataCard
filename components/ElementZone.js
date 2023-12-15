@@ -31,7 +31,7 @@ const Experience = ({ item }) => {
   );
 };
 
-const ElementZone = () => {
+export default ElementZone = () => {
   return (
     <View style={styles.container}>
       <View style={styles.experienceView}>
@@ -115,4 +115,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ElementZone;

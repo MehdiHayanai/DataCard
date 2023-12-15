@@ -18,9 +18,9 @@ import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
         { id: "13", name: "Speed", icon: require('../assets/experienceIcons/vitesse.png'), color:"#8CE7D4" },
       ];
 
-const Experience = ({ item }) => {
+const Experience = ({ item, navigation }) => {
   return (
-    <TouchableOpacity style={[styles.experienceContainer, { backgroundColor: item.color }]}>
+    <TouchableOpacity style={[styles.experienceContainer, { backgroundColor: item.color }]} onPress={()=> navigation.navigate("Temperature")}>
       <View style={styles.experience}>
         <Text style={styles.title}>
           {item.name}
@@ -34,13 +34,13 @@ const Experience = ({ item }) => {
   );
 };
 
-const ExperienceZone = () => {
+const CardsZone = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.experienceView}>
         {
           experiences.map((item) => (
-            <Experience key={item.id} item={item} />
+            <Experience key={item.id} item={item}  navigation={navigation}/>
           ))
         }
       </View>
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ExperienceZone;
+export default CardsZone;

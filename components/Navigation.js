@@ -1,18 +1,22 @@
 import * as React from 'react';
 import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function Navigation({active}) {
+export default  Navigation = ({active, navigation}) => {
   // Define an array of objects containing navigation information
 const navigationInfo = [
   {
     icon: require("../assets/icons/notActive/experience.png"),
     iconActive: require("../assets/icons/navigation/experience.png"),
     label: 'Expérience',
+    path : "Expérience",
   },
   {
     icon: require("../assets/icons/notActive/datacard.png"),
     iconActive: require("../assets/icons/navigation/datacard.png"),
     label: 'Datacard',
+    path: "DataCard",
   },
   {
     icon: require("../assets/icons/notActive/projet.png"),
@@ -28,12 +32,14 @@ const navigationInfo = [
 ];
 
 
+
   return (
     <View style={styles.navigation}>
       {navigationInfo.map((item, index) => (
         <TouchableOpacity
           key={index}
           style={[styles.navigationButton, active === item.label ? styles.activeButton : null]}
+          onPress={() => console.log(navigation)}
         >
           <Image
             source={active === item.label ? item.iconActive : item.icon}

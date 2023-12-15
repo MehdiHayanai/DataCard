@@ -1,36 +1,27 @@
 import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 
 // You can import supported modules from npm
-import { Card } from 'react-native-paper';
-import Header from "./components/Header";
-import Navigation from "./components/Navigation"
-import ExperienceZone from "./components/ExperienceZone"
-import ElementZone from "./components/ElementZone"
+import DataCardScreen from './components/DataCardScreen';
+import ExperienceScreen from './components/ExperienceScreen';
+import TemperatureData from './components/TemperatureData';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Navigation from './components/Navigation';
 
-const stakc  = createStackNavigator();
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 
 export default function App() {
   return (
     <NavigationContainer>
-      <SafeAreaView style={styles.container}>
-        {/* <Header title={"Expérience"}/> */}
-        {/* <View style={styles.center}>
-          <ElementZone/>
-        </View>
-        <Navigation active={"Expérience"} />  */}
-        <Header title={"DataCard test"}/>
-        <View style={styles.center}>
-          {/* <ExperienceZone/> */}
-          <ElementZone/>
+      <Stack.Navigator initialRouteName='DataCard'>
+        <Stack.Screen name="DataCard" component={DataCardScreen} />
+        <Stack.Screen name="Expérience" component={ExperienceScreen} />
+        <Stack.Screen name="Temperature" component={TemperatureData} />        
+      </Stack.Navigator>
 
-        </View>
-        <Navigation active={"Datacard"}/> 
-
-      </SafeAreaView>
     </NavigationContainer>
   );
 }
