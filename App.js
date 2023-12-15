@@ -1,4 +1,4 @@
-import { Text, Image, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 
 // You can import supported modules from npm
 import DataCardScreen from './components/DataCardScreen';
@@ -13,25 +13,7 @@ import AccelCard from './components/Cards/AccelCard';
 import GraphTest from './components/TestObjects/GraphTest';
 
 const Stack = createNativeStackNavigator();
-
-
-const HeaderTmp = ({title}) => {
-  return (
-    <View style={styles.header}>
-        <Image
-            source={require('./assets/icons/user-rounded-svgrepo-com.png')}
-            style={styles.logo}
-        />
-      <Text style={styles.title}>
-        {title}
-      </Text>
-      <Image
-            source={require('./assets/icons/settings-svgrepo-com.png')}
-            style={styles.logo}
-        />
-    </View>
-  );
-}
+const Tab = createBottomTabNavigator();
 
 
 export default function App() {
@@ -58,18 +40,6 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     alignItems: "center",
-  },
-  header: {
-    alignItems: 'center', // Aligns children components along the cross-axis (vertically in a row)
-    justifyContent: 'space-between', // Aligns children components along the main axis (horizontally in a row)
-    flexDirection: "row", // Displays children components in a row
-    marginTop: 25,
-    width: 300,
-
-  },
-  logo: {
-    width: 40,
-    height: 40,
-},
+  }
 
 });
