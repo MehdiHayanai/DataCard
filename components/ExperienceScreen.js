@@ -7,6 +7,7 @@ import ElementZone from './ElementZone';
 export default ExperienceScreen = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
+          <Header title={"Expérience"}/>
             <View style={styles.center}>
               <ElementZone/>
             </View>

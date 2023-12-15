@@ -1,4 +1,4 @@
-import { Text, Image, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 
 // You can import supported modules from npm
 import DataCardScreen from './components/DataCardScreen';
@@ -10,28 +10,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
 import AccelCard from './components/Cards/AccelCard';
-import GraphTestTwo from './components/TestObjects/GraphTestTwo';
+import GraphTest from './components/TestObjects/GraphTest';
 
 const Stack = createNativeStackNavigator();
-
-
-const HeaderTmp = ({title}) => {
-  return (
-    <View style={styles.header}>
-        <Image
-            source={require('./assets/icons/user-rounded-svgrepo-com.png')}
-            style={styles.logo}
-        />
-      <Text style={styles.title}>
-        {title}
-      </Text>
-      <Image
-            source={require('./assets/icons/settings-svgrepo-com.png')}
-            style={styles.logo}
-        />
-    </View>
-  );
-}
+const Tab = createBottomTabNavigator();
 
 
 export default function App() {
@@ -40,7 +22,7 @@ export default function App() {
       <Stack.Navigator initialRouteName='Temperature'>
         <Stack.Screen name="DataCard" component={DataCardScreen} options={{ headerTitle: (props) => <HeaderTmp title="DataCard" {...props} />, headerTintColor: '#82B4DD',} }/>
         <Stack.Screen name="Experience" component={ExperienceScreen} options={{ headerTitle: (props) => <HeaderTmp title="Expérience" {...props} />}}  />
-        <Stack.Screen name="Temperature" component={GraphTestTwo} />        
+        <Stack.Screen name="Temperature" component={GraphTest} />        
       </Stack.Navigator>
 
     </NavigationContainer>
@@ -59,18 +41,6 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     alignItems: "center",
-  },
-  header: {
-    alignItems: 'center', // Aligns children components along the cross-axis (vertically in a row)
-    justifyContent: 'space-between', // Aligns children components along the main axis (horizontally in a row)
-    flexDirection: "row", // Displays children components in a row
-    marginTop: 25,
-    width: 300,
-
-  },
-  logo: {
-    width: 40,
-    height: 40,
-},
+  }
 
 });
