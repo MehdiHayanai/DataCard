@@ -10,7 +10,7 @@ const navigationInfo = [
     icon: require("../assets/icons/notActive/experience.png"),
     iconActive: require("../assets/icons/navigation/experience.png"),
     label: 'Expérience',
-    path : "Expérience",
+    path : "Experience",
   },
   {
     icon: require("../assets/icons/notActive/datacard.png"),
@@ -39,7 +39,7 @@ const navigationInfo = [
         <TouchableOpacity
           key={index}
           style={[styles.navigationButton, active === item.label ? styles.activeButton : null]}
-          onPress={() => console.log(navigation)}
+          onPress={() => navigation.navigate(item.path)}
         >
           <Image
             source={active === item.label ? item.iconActive : item.icon}

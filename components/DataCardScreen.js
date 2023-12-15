@@ -8,7 +8,7 @@ export default DataCardScreen = ({navigation}) => {
         <SafeAreaView style={styles.container}>
             <View style={styles.center}>
                 <CardsZone navigation={navigation}/>
-                <Navigation active={"Datacard"}/> 
+                <Navigation active={"Datacard"} navigation={navigation}/> 
 
             </View>
         </SafeAreaView>

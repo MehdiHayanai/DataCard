@@ -16,9 +16,9 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='DataCard'>
+      <Stack.Navigator initialRouteName='Experience'>
         <Stack.Screen name="DataCard" component={DataCardScreen} />
-        <Stack.Screen name="Expérience" component={ExperienceScreen} />
+        <Stack.Screen name="Experience" component={ExperienceScreen} />
         <Stack.Screen name="Temperature" component={TemperatureData} />        
       </Stack.Navigator>
 
