@@ -20,7 +20,7 @@ import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 const Experience = ({ item, navigation }) => {
   return (
-    <TouchableOpacity style={[styles.experienceContainer, { backgroundColor: item.color }]} onPress={()=> navigation.navigate("Temperature")}>
+    <TouchableOpacity style={[styles.experienceContainer, { backgroundColor: item.color }]} onPress={()=> navigation.navigate(item.name)}>
       <View style={styles.experience}>
         <Text style={styles.title}>
           {item.name}

@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Accelerometer } from 'expo-sensors';
 import Plotly from 'react-native-plotly';
 
-export default AccelCard = ({navigation}) => {
+export default VibrationCard = ({navigation}) => {
   const [accelerationData, setAccelerationData] = useState([]);
   const transformationVariable = 9.81 // mm/s²
 
