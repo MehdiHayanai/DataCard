@@ -3,7 +3,7 @@ import { View,SafeAreaView, Image, StyleSheet, Text } from 'react-native';
 import Navigation from './Navigation';
 import ElementZone from './Zones/ExperienceZone';
 
-export default ExperienceScreen = ({navigation}) => {
+export default ProjectScreen = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.center}>

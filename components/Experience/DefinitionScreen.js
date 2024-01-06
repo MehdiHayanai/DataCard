@@ -1,7 +1,6 @@
-import { style } from "deprecated-react-native-prop-types/DeprecatedViewPropTypes";
 import React, {useState, useEffect} from "react";
 import {StyleSheet, SafeAreaView, View, Text, Dimensions} from "react-native";
-import Plotly from "react-native-plotly";
+import Navigation from "../Navigation";
 
 const words = [
     {
@@ -117,7 +116,7 @@ const styles = StyleSheet.create({
         borderColor: "#c0c4c1",
         borderWidth: 1,
         margin: 20,
-        height: 300,
+        minHeight: 300,
     },
     textTitle : {
         color: "#82B4DD",

@@ -21,7 +21,8 @@ const navigationInfo = [
   {
     icon: require("../assets/icons/notActive/projet.png"),
     iconActive: require("../assets/icons/navigation/datacard.png"),
-    label: 'Projets',
+    label: 'Project',
+    path: 'Project',
   },
   {
     icon: require("../assets/icons/notActive/historique.png"),

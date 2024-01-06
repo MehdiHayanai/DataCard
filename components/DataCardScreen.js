@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View,SafeAreaView, Image, StyleSheet, Text } from 'react-native';
-import CardsZone from './CardsZone';
+import CardsZone from './Zones/CardsZone';
 import Navigation from './Navigation';
 
 export default DataCardScreen = ({navigation}) => {
