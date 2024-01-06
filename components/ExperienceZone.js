@@ -18,9 +18,9 @@ import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
         
       ];
 
-const Experience = ({ item }) => {
+const Experience = ({ item, navigation }) => {
   return (
-    <TouchableOpacity style={[styles.experienceContainer, { backgroundColor: item.color }]}>
+    <TouchableOpacity style={[styles.experienceContainer, { backgroundColor: item.color }]} onPress={()=> navigation.navigate("DefinitionScreen",{ definitionId: [item.id] })}>
       <View style={styles.experience}>
         <Text style={styles.title}>
           {item.name}
@@ -31,12 +31,12 @@ const Experience = ({ item }) => {
   );
 };
 
-export default ElementZone = () => {
+export default ExperienceZone = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.experienceView}>
         {experiences.map((item) => (
-          <Experience key={item.id} item={item} />
+          <Experience key={item.id} item={item} navigation={navigation}/>
         ))}
       </View>
       <View style={styles.dice}>

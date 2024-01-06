@@ -2,14 +2,13 @@ import * as React from 'react';
 import { View,SafeAreaView, Image, StyleSheet, Text } from 'react-native';
 import Header from './Header';
 import Navigation from './Navigation';
-import ElementZone from './ElementZone';
+import ElementZone from './ExperienceZone';
 
 export default ExperienceScreen = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
-          <Header title={"Expérience"}/>
             <View style={styles.center}>
-              <ElementZone/>
+              <ElementZone navigation={navigation}/>
             </View>
           <Navigation active={"Expérience"} navigation={navigation}/>  
         </SafeAreaView>

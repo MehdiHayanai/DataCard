@@ -19,6 +19,7 @@ import SpeedCard from './components/Cards/SpeedCard';
 import TemperatureCard from './components/Cards/TemperatureCard';
 import VibrationCard from './components/Cards/VibrationCard';
 import HumidityCard from './components/Cards/HumidityCard';
+import DefinitionScreen from './components/Experience/DefinitionScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -27,7 +28,7 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Vibration'>
+      <Stack.Navigator initialRouteName='DataCard'>
         <Stack.Screen name="DataCard" component={DataCardScreen} />
         <Stack.Screen name="Experience" component={ExperienceScreen}  />
         <Stack.Screen name="Temperature" component={TemperatureCard} />        
@@ -44,6 +45,7 @@ export default function App() {
         <Stack.Screen name="Vibration" component={VibrationCard} />        
         <Stack.Screen name="Speed" component={SpeedCard} />        
         <Stack.Screen name="Humidity" component={HumidityCard} />        
+        <Stack.Screen name="DefinitionScreen" component={DefinitionScreen} />        
       </Stack.Navigator>
     </NavigationContainer>
   );
