@@ -113,7 +113,6 @@ const styles = StyleSheet.create({
     definitionContainer : {
         padding: 20,
         alignItems: "center",
-        // justifyContent: "center",
         backgroundColor: "white",
         borderColor: "#c0c4c1",
         borderWidth: 1,
