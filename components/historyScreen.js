@@ -2,18 +2,11 @@ import * as React from 'react';
 import { View,SafeAreaView, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import Navigation from './Navigation';
 
-export default ProjectScreen = ({navigation}) => {
-
-
+export default HistoryScreen = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.center}>
-              <View style={styles.projectContainer}>
-                <Image source={require('../assets/ampoule.png')} style={{width: 200, height: 200, margin: 10}}/>
-                <TouchableOpacity style={styles.newProjectButton} onPress={()=> navigation.navigate("NewProjectScreen")}>
-                    <Text style={styles.newProjectText}>Nouveau Projet</Text>
-                </TouchableOpacity>
-              </View>
+                <Text style={{fontSize: 30, fontWeight: "bold", margin: 10}}>Mes Projets</Text>
             </View>
           <Navigation active={"Projet"} navigation={navigation}/>  
         </SafeAreaView>
@@ -53,6 +46,6 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 15,
     }
-
+    
   });
   

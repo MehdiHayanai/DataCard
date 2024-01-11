@@ -21,6 +21,7 @@ import VibrationCard from './components/Cards/VibrationCard';
 import HumidityCard from './components/Cards/HumidityCard';
 import DefinitionScreen from './components/Experience/DefinitionScreen';
 import ProjectScreen from './components/ProjectScreen';
+import NewProjectScreen from './components/NewProjectScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,7 +33,7 @@ export default function App() {
       <Stack.Navigator initialRouteName='DataCard'>
         <Stack.Screen name="DataCard" component={DataCardScreen} />
         <Stack.Screen name="Experience" component={ExperienceScreen}  />
-        {/* <Stack.Screen name="Project" component={ProjectScreen} />         */}
+        <Stack.Screen name="Projet" component={ProjectScreen} />        
         <Stack.Screen name="Temperature" component={TemperatureCard} />        
         <Stack.Screen name="Contact" component={ContactCard} />        
         <Stack.Screen name="Gas" component={GasCard} />        
@@ -48,6 +49,7 @@ export default function App() {
         <Stack.Screen name="Speed" component={SpeedCard} />        
         <Stack.Screen name="Humidity" component={HumidityCard} />        
         <Stack.Screen name="DefinitionScreen" component={DefinitionScreen} />        
+        <Stack.Screen name="NewProjectScreen" component={NewProjectScreen} />        
       </Stack.Navigator>
     </NavigationContainer>
   );

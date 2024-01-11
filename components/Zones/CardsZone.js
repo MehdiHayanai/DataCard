@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     marginBottom: 5,
+    textAlign: "center",
   },
   experience: {
     alignItems: 'center',
