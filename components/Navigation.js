@@ -36,7 +36,7 @@ const navigationInfo = [
 
   return (
     <View style={styles.navigation}>
-      {navigationInfo.map((item, index) => (
+      {/* {navigationInfo.map((item, index) => (
         <TouchableOpacity
           key={index}
           style={[styles.navigationButton, active === item.label ? styles.activeButton : null]}
@@ -48,7 +48,7 @@ const navigationInfo = [
           />
           <Text style={[active === item.label ? styles.active : styles.empty, styles.textStyle]}>{item.label}</Text>
         </TouchableOpacity>
-      ))}
+      ))} */}
     </View>
   );
 }
