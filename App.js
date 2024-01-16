@@ -1,20 +1,22 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 // You can import supported modules from npm
-import DataCardScreen from './components/DataCardScreen';
 import ExperienceScreen from './components/ExperienceScreen';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProjectScreen from './components/ProjectScreen';
 import NewProjectScreen from './components/NewProjectScreen';
 import DataCardNavigation from './components/navigationWrapper/DataCardNavigation';
+import Header from './components/Header';
 import { Ionicons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
 
+
 export default function App() {
+  
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -42,13 +44,18 @@ export default function App() {
             tabBarStyle: {
               backgroundColor: '#F5F5F5',
               paddingBottom: 10,
-              height: 70,
+              height: 70,              
             },
             tabBarLabelStyle: {
               fontSize: 12,
               marginTop: -5,
             },
             tabBarHideOnKeyboard : true,
+            headerTintColor: '#7FB8E1',
+            headerStyle: {
+              height: 85, 
+            },
+
           })
         }
 
@@ -57,6 +64,8 @@ export default function App() {
           options={{
             title: 'Data Cards',
             tabBarLabel: 'Data Cards',
+            headerTitle: (props) => <Header {...props} title={"Data Cards"} /> 
+
           }}
         />
         <Tab.Screen name="ExperienceScreen" component={ExperienceScreen} 

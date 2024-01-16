@@ -1,20 +1,28 @@
 import * as React from 'react';
-import { View, Image, StyleSheet, Text } from 'react-native';
+import { View, Image, StyleSheet, Text, useWindowDimensions, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Ionicons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
 
-export default function Header({title}) {
+export default function Header({props, title}) {
+    // use hook to get the size of the screen
+    const { width, height } = useWindowDimensions();
+    // use use navigation hook to get access to the navigation object
+    const navigation = useNavigation();
+    // calculate the safe area for the header
+    const halfSafeArea = width *0.05;
+
     return (
-        <View style={styles.header}>
-        <Image
-            source={require('../assets/icons/user-rounded-svgrepo-com.png')}
-            style={styles.logo}
-        />
-        <Text style={styles.title}>
-          {title}
-        </Text>
-        <Image
-            source={require('../assets/icons/settings-svgrepo-com.png')}
-            style={styles.logo}
-        />
+        <View style={[styles.header, {width: width, marginLeft: -halfSafeArea}]}>
+            <TouchableOpacity onPress={() => navigation.navigate('ProjectScreen')}>
+                <FontAwesome5 name="user-alt" size={25} color="#7FB8E1" />
+            </TouchableOpacity>
+            <Text style={styles.titleStyle}>
+                {title}
+            </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('ProjectScreen')}>
+                <FontAwesome name="gear" size={28} color="#7FB8E1" />
+            </TouchableOpacity>
         </View>
     );
 }
@@ -22,20 +30,22 @@ export default function Header({title}) {
 
 const styles = StyleSheet.create({
     header: {
+        flexDirection: "row",
+        flex: 1,
         paddingHorizontal: 20,
-        flex: 0.15,
         alignItems: 'center',
         justifyContent: 'space-between',
-        flexDirection: "row",
         marginTop: 10,
+        paddingBottom: 10,
     },
     logo: {
         width: 40,
         height: 40,
     },
-    title: {
+    titleStyle: {
       color: "#82B4DD",
-      fontWeight: "bold",
-      fontSize: 25,
+      fontFamily: "Roboto",
+      fontWeight: 700,
+      fontSize: 28,
     }
 });
