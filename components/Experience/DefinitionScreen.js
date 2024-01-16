@@ -1,80 +1,10 @@
 import React, {useState, useEffect} from "react";
 import {StyleSheet, SafeAreaView, View, Text, Dimensions} from "react-native";
-import Navigation from "../Navigation";
-
-const words = [
-    {
-      id: "0",
-      experience: "Trust",
-      definition: "Confiance: La confiance est le sentiment de fiabilité et de crédibilité envers quelqu'un ou quelque chose."
-    },
-    {
-      id: "1",
-      experience: "Comfort",
-      definition: "Confort: Le confort représente le sentiment de bien-être et de détente physique ou psychologique."
-    },
-    {
-      id: "2",
-      experience: "Fear",
-      definition: "Peur: La peur est une émotion ressentie face à une menace, un danger ou quelque chose d'inconnu."
-    },
-    {
-      id: "3",
-      experience: "Control",
-      definition: "Contrôle: Le contrôle implique le pouvoir de diriger, réguler ou influencer une situation ou un événement."
-    },
-    {
-      id: "4",
-      experience: "Efficiency",
-      definition: "Efficacité: L'efficacité est la capacité à atteindre un objectif ou produire un résultat avec le minimum de ressources utilisées."
-    },
-    {
-      id: "5",
-      experience: "Learnability",
-      definition: "Facilité d'apprentissage: La facilité d'apprentissage désigne la facilité avec laquelle on peut acquérir de nouvelles compétences ou connaissances."
-    },
-    {
-      id: "6",
-      experience: "Ease of use",
-      definition: "Facilité d'utilisation: La facilité d'utilisation indique la simplicité et la praticité d'utilisation d'un produit ou d'un système."
-    },
-    {
-      id: "7",
-      experience: "Stress",
-      definition: "Stress: Le stress est une réponse physique ou émotionnelle à une pression ou à une situation difficile."
-    },
-    {
-      id: "8",
-      experience: "Intuitivity",
-      definition: "Intuitivité: L'intuitivité se rapporte à la facilité de compréhension ou d'utilisation d'une chose sans besoin d'explications complexes."
-    },
-    {
-      id: "9",
-      experience: "Performance",
-      definition: "Performance: La performance représente la qualité d'exécution ou de fonctionnement d'une personne, d'un produit ou d'un système."
-    },
-    {
-      id: "10",
-      experience: "Reliability",
-      definition: "Fiabilité: La fiabilité est la capacité d'une personne ou d'un objet à maintenir des standards élevés de qualité et de performance de manière consistante."
-    },
-    {
-      id: "11",
-      experience: "Safety",
-      definition: "Sécurité: La sécurité est l'état de protection contre les dangers, les risques ou les menaces pour éviter les dommages ou les blessures."
-    }
-  ];
-  
-
-
 
 
 export default DefinitionScreen = ({ navigation, route }) => {
-    const currentDefinition = words.filter(word => word.id === route.params.definitionId[0])[0]
-    // use filter to find the element with id === to rout.definitionID[0]
-    console.log(currentDefinition)
-    // set definition to the definition of the element
-    // set the title to the experience of the element
+
+    const currentDefinition = route.params.item[0]
 
     return (
         <SafeAreaView style={styles.container}>
@@ -89,7 +19,6 @@ export default DefinitionScreen = ({ navigation, route }) => {
                     <Text>{currentDefinition.definition}</Text>
                 </View>
             </View>
-              <Navigation active={"Expérience"} navigation={navigation}/>  
         </SafeAreaView>
     )
 }

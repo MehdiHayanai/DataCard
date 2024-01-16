@@ -1,25 +1,89 @@
 import * as React from 'react';
 import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Ionicons, MaterialCommunityIcons  } from '@expo/vector-icons';
 
     const experiences = [
-        { id: "0", name: "Trust", icon: require('../../assets/experienceIcons/humidite.png'), color:"#FFF" },
-        { id: "1", name: "Comfort", icon: require('../../assets/experienceIcons/temperature.png'), color:"#FFF" },
-        { id: "2", name: "Fear", icon: require('../../assets/experienceIcons/contact.png'), color:"#FFF" },
-        { id: "3", name: "Control", icon: require('../../assets/experienceIcons/gaz.png'), color:"#FFF" },
-        { id: "4", name: "Effi\nciency", icon: require('../../assets/experienceIcons/orientation.png'), color:"#FFF" },
-        { id: "6", name: "Learn\nability", icon: require('../../assets/experienceIcons/force.png'), color:"#FFF" },
-        { id: "5", name: "Ease of use", icon: require('../../assets/experienceIcons/luminosite.png'), color:"#FFF" },
-        { id: "7", name: "Stress", icon: require('../../assets/experienceIcons/elevation.png'), color:"#FFF" },
-        { id: "8", name: "Intuiti\nvity", icon: require('../../assets/experienceIcons/color.png'), color:"#FFF" },
-        { id: "9", name: "Perfor\nmance", icon: require('../../assets/experienceIcons/position.png'), color:"#FFF" },
-        { id: "10", name: "Relia\nbility", icon: require('../../assets/experienceIcons/proximite.png'), color:"#FFF" },
-        { id: "11", name: "Safety", icon: require('../../assets/experienceIcons/son.png'), color:"#FFF" },
+        { 
+          id: "0",
+          name: "Trust", 
+          color:"#FFF",
+          definition: "Confiance: La confiance est le sentiment de fiabilité et de crédibilité envers quelqu'un ou quelque chose.",
+          experience: "Trust",  
+        },
+        { 
+          id: "1",
+          name: "Comfort", 
+          color:"#FFF",
+          definition: "Confort: Le confort représente le sentiment de bien-être et de détente physique ou psychologique.",
+          experience: "Comfort",  
+        },
+        { 
+          id: "2",
+          name: "Fear", 
+          color:"#FFF",
+          definition: "Peur: La peur est une émotion ressentie face à une menace, un danger ou quelque chose d'inconnu.",
+          experience: "Fear",
+        },
+        { id: "3",
+          name: "Control", 
+          color:"#FFF",
+          definition: "Contrôle: Le contrôle implique le pouvoir de diriger, réguler ou influencer une situation ou un événement.",
+          experience: "Control",
+        },
+        { id: "4",
+          name: "Effi\nciency", 
+          color:"#FFF",
+          definition: "Efficacité: L'efficacité est la capacité à atteindre un objectif ou produire un résultat avec le minimum de ressources utilisées.",
+          experience: "Efficiency",
+        },
+        { id: "6",
+          name: "Learn\nability", 
+          color:"#FFF",
+          definition: "Facilité d'apprentissage: La facilité d'apprentissage désigne la facilité avec laquelle on peut acquérir de nouvelles compétences ou connaissances.",
+          experience: "Learnability",
+        },
+        { id: "5",
+          name: "Ease of use", 
+          color:"#FFF",
+          definition: "Facilité d'utilisation: La facilité d'utilisation indique la simplicité et la praticité d'utilisation d'un produit ou d'un système.",
+          experience: "Ease of use",
+        },
+        { id: "7",
+          name: "Stress", 
+          color:"#FFF",
+          definition: "Stress: Le stress est une réponse physique ou émotionnelle à une pression ou à une situation difficile.",
+          experience: "Stress",
+        },
+        { id: "8",
+          name: "Intuiti\nvity", 
+          color:"#FFF",
+          definition: "Intuitivité: L'intuitivité se rapporte à la facilité de compréhension ou d'utilisation d'une chose sans besoin d'explications complexes.",
+          experience: "Intuitivity",
+        },
+        { id: "9",
+          name: "Perfor\nmance", 
+          color:"#FFF",
+          definition: "Performance: La performance représente la qualité d'exécution ou de fonctionnement d'une personne, d'un produit ou d'un système.",
+          experience: "Performance",
+        },
+        { id: "10",
+          name: "Relia\nbility", 
+          color:"#FFF",
+          definition: "Fiabilité: La fiabilité est la capacité d'une personne ou d'un objet à maintenir des standards élevés de qualité et de performance de manière consistante.",
+          experience: "Reliability",
+        },
+        { id: "11",
+          name: "Safety", 
+          color:"#FFF",
+          definition: "Sécurité: La sécurité est l'état de protection contre les dangers, les risques ou les menaces pour éviter les dommages ou les blessures.",
+          experience: "Safety",
+        },
         
       ];
 
 const Experience = ({ item, navigation }) => {
   return (
-    <TouchableOpacity style={[styles.experienceContainer, { backgroundColor: item.color }]} onPress={()=> navigation.navigate("DefinitionScreen",{ definitionId: [item.id] })}>
+<TouchableOpacity style={[styles.experienceContainer, { backgroundColor: item.color }]} onPress={()=> navigation.navigate("DefinitionScreen",{ item: [item] })}>
       <View style={styles.experience}>
         <Text style={styles.title}>
           {item.name}
@@ -31,6 +95,12 @@ const Experience = ({ item, navigation }) => {
 };
 
 export default ExperienceZone = ({navigation}) => {
+
+  const randomExperience = () => {
+    const random = Math.floor(Math.random() * experiences.length);
+    navigation.navigate("DefinitionScreen",{ item: [experiences[random]] })
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.experienceView}>
@@ -39,11 +109,8 @@ export default ExperienceZone = ({navigation}) => {
         ))}
       </View>
       <View style={styles.dice}>
-        <TouchableOpacity style={styles.diceContainer}>
-        <Image
-            source={require('../../assets/snack-icon.png')}
-            style={styles.diceLogo}
-          />
+        <TouchableOpacity style={styles.diceContainer} onPress={() => randomExperience()}>
+          <MaterialCommunityIcons name="cube-scan" size={50} color="#F8F8F8" />
         </TouchableOpacity>
       </View>
     </View>
@@ -71,8 +138,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 5,
-    borderWidth: 1,
+    // borderWidth: 1,
     borderColor: '#000',
+    elevation: 1,
+    shadowOffset: { width: -3, height: 6 },
+    borderRadius: 5,
   },
   title: {
     fontWeight: "bold",
@@ -80,11 +150,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
     padding: 10,
     textTransform: "uppercase",
-    
-
+    textAlign: "center",
   },
   dice:{
-    marginTop: 20,
     flex: 0.3,
     alignItems: "center",
     justifyContent: "center",
@@ -94,20 +162,18 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 100,
-    backgroundColor: "#75C3AD",
+    backgroundColor: "#82B4DD",
     alignItems: 'center',
     justifyContent: "center",
     padding: 20,
     elevation: 5, 
     shadowOffset: { width: -3, height: 6 },
-
-    
-
   },
   diceLogo:{
     height: 60,
     width: 60,
   },
+          
   experience: {
     alignItems: 'center',
     justifyContent: 'center',

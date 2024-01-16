@@ -16,20 +16,11 @@ import TemperatureCard from '../Cards/TemperatureCard';
 import VibrationCard from '../Cards/VibrationCard';
 import HumidityCard from '../Cards/HumidityCard';
 import DataCardScreen from "../DataCardScreen";
-import { Ionicons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
 
 
 
 const Stack = createNativeStackNavigator();
-const CustomHeader = ({props, title}) => {
-    return (
-        <View style={styles.header}>
-            <Text style={styles.titleStyle}>
-                {title}
-            </Text>
-        </View>
-    );
-}
+
 
 export default function DataCardNavigation() {
     return (
@@ -42,16 +33,12 @@ export default function DataCardNavigation() {
                     textAlign: 'center',
                 },
                 headerTitleAlign: 'center',
-
-                
-
             }}
         >
             <Stack.Screen
                  name="DataCardScreen"
                  component={DataCardScreen} 
                  options={{ headerShown: false }}
-
             />
             <Stack.Screen 
                 name="Temperature" 

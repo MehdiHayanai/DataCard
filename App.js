@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 // You can import supported modules from npm
-import ExperienceScreen from './components/ExperienceScreen';
+// import ExperienceScreen from './components/ExperienceScreen';
+import ExperienceNavigation from './components/navigationWrapper/ExperienceNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProjectScreen from './components/ProjectScreen';
@@ -20,7 +21,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName='DataCardScreen'
+        initialRouteName='ExperienceNavigation'
         screenOptions={
           ({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
@@ -28,7 +29,7 @@ export default function App() {
 
               if (route.name === 'DataCardNavigation') {
                 iconName = 'cube';
-              } else if (route.name === 'ExperienceScreen') {
+              } else if (route.name === 'ExperienceNavigation') {
                 iconName = 'stats-chart';
               } else if (route.name === 'ProjectScreen') {
                 iconName = 'add-circle';
@@ -68,7 +69,7 @@ export default function App() {
 
           }}
         />
-        <Tab.Screen name="ExperienceScreen" component={ExperienceScreen} 
+        <Tab.Screen name="ExperienceNavigation" component={ExperienceNavigation} 
           options={{
             title: 'Experience',
             tabBarLabel: 'Experience',
@@ -80,6 +81,8 @@ export default function App() {
           options={{
             title: 'Projects',
             tabBarLabel: 'Projects',
+            headerTitle: (props) => <Header {...props} title={"Nouveau projet"} /> 
+
           }}
         />
         <Tab.Screen name="NewProjectScreen" component={NewProjectScreen} 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Image, StyleSheet, Text, useWindowDimensions, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5, FontAwesome } from '@expo/vector-icons';
 
 export default function Header({props, title}) {
     // use hook to get the size of the screen

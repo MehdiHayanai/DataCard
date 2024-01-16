@@ -70,6 +70,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 15,
     margin: 10,
+    elevation: 2,
+    shadowOffset: { width: -3, height: 6 },
   },
   experienceIcon: {
     height: 40,
