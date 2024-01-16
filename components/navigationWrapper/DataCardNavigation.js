@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BrightnessCard from '../Cards/BrightnessCard';
 import ColorCard from '../Cards/ColorCard';
@@ -16,9 +15,9 @@ import SpeedCard from '../Cards/SpeedCard';
 import TemperatureCard from '../Cards/TemperatureCard';
 import VibrationCard from '../Cards/VibrationCard';
 import HumidityCard from '../Cards/HumidityCard';
-import DefinitionScreen from '../Experience/DefinitionScreen';
 import DataCardScreen from "../DataCardScreen";
-import Header from "../Header";
+import { Ionicons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -41,7 +40,11 @@ export default function DataCardNavigation() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     textAlign: 'center',
-                }
+                },
+                headerTitleAlign: 'center',
+
+                
+
             }}
         >
             <Stack.Screen
@@ -53,9 +56,6 @@ export default function DataCardNavigation() {
             <Stack.Screen 
                 name="Temperature" 
                 component={TemperatureCard}
-                options={{ 
-                    headerTitle: (props) => <CustomHeader {...props} title={ "Temperature"} />
-                 }}
             />        
             <Stack.Screen name="Contact" component={ContactCard} />        
             <Stack.Screen name="Gas" component={GasCard} />        

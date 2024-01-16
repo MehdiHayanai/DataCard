@@ -53,7 +53,7 @@ export default function App() {
             tabBarHideOnKeyboard : true,
             headerTintColor: '#7FB8E1',
             headerStyle: {
-              height: 85, 
+              height: 90, 
             },
 
           })
@@ -72,6 +72,8 @@ export default function App() {
           options={{
             title: 'Experience',
             tabBarLabel: 'Experience',
+            headerTitle: (props) => <Header {...props} title={"Experience"} /> 
+
           }}
         />
         <Tab.Screen name="ProjectScreen" component={ProjectScreen} 

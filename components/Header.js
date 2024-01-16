@@ -2,7 +2,6 @@ import * as React from 'react';
 import { View, Image, StyleSheet, Text, useWindowDimensions, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
-import { FontAwesome6 } from '@expo/vector-icons';
 
 export default function Header({props, title}) {
     // use hook to get the size of the screen
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     titleStyle: {
       color: "#82B4DD",
       fontFamily: "Roboto",
-      fontWeight: 700,
-      fontSize: 28,
+      fontSize: 25,
+      fontWeight: "bold",
     }
 });
