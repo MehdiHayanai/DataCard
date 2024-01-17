@@ -7,7 +7,7 @@ import ProjectScreen from './components/CreateProjetScreen';
 import DataCardNavigation from './components/navigationWrapper/DataCardNavigation';
 import ProjectNavigation from './components/navigationWrapper/ProjectNavigation';
 import HistoryScreens from './components/HistoryScreens';
-import Header from './components/Header';
+import Header from './components/ui/Header';
 import { Ionicons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
@@ -20,7 +20,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName='NewProjectScreen'
+        initialRouteName='ProjectNavigation'
         screenOptions={
           ({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {

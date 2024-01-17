@@ -133,6 +133,14 @@ export default NewProjectScreen = ({navigation}) => {
 
       if(!error){
         resetValues();
+        // { item: [item] }
+        const projectInformation = {
+          name: name,
+          description: description,
+          selectedDataCard: selectedDataCard,
+          selectedExperience: selectedExperience,
+        }
+        navigation.navigate("ProjectScreen", {item : projectInformation});
       }
 
     }

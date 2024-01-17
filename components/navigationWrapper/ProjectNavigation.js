@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import NewProjectScreen from "../NewProjectScreen";
 import CreateProjetScreen from "../CreateProjetScreen";
+import ProjectScreen from "../ProjectScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,7 +32,14 @@ export default function ProjectNavigation() {
                 name="NewProjectScreen"
                 component={NewProjectScreen}
                 options={{
-                    title: "",
+                    headerShown: false,
+
+                }}
+            />        
+            <Stack.Screen 
+                name="ProjectScreen"
+                component={ProjectScreen}
+                options={{
                     headerShown: false,
 
                 }}
