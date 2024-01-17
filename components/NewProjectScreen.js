@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { View,SafeAreaView, ScrollView , Image, StyleSheet, Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { MultipleSelectList, SelectList } from 'react-native-dropdown-select-list'
 
+
 const data = [
     { key: "0", value: "Humidity", icon: require('../assets/experienceIcons/humidite.png'), color:"#C2FEFE" },
     { key: "1", value: "Temperature", icon: require('../assets/experienceIcons/temperature.png'), color:"#FD9093" },
@@ -82,8 +83,8 @@ const data = [
   ];
 
 export default NewProjectScreen = ({navigation}) => {
-    const [name, onChangeName] = useState('');
-    const [description, onChangeDescription] = useState('');
+    const [name, onChangeName] = useState('Sac à dos de rendonnée');
+    const [description, onChangeDescription] = useState('sac à dos intelligent munis de capteurs pour aider les randonneurs');
     const [selectedDataCard, setSelectedDataCard] = useState([]);
     const [selectedExperience, setSelectedExperience] = useState([]);
     const [ErrorMessages, OnChangeErrorMessgaes ] = useState({
@@ -132,8 +133,7 @@ export default NewProjectScreen = ({navigation}) => {
       OnChangeErrorMessgaes(tmpErrorValues);
 
       if(!error){
-        resetValues();
-        // { item: [item] }
+        // resetValues();
         const projectInformation = {
           name: name,
           description: description,
@@ -154,7 +154,7 @@ export default NewProjectScreen = ({navigation}) => {
                   <View style={[styles.formElementContainer]}>
                       <Text style={[styles.fieldLabel]}>Nom du projet *</Text>
                       <TextInput
-                          style={[styles.input, ErrorMessages.name !== "" ? styles.errorBorder : null]}
+                          style={[styles.input, ErrorMessages.name !== "" ? styles.errorBorder : null, {height: 40}]}
                           onChangeText={onChangeName}
                           value={name}
                           placeholder="Project name"
@@ -166,10 +166,12 @@ export default NewProjectScreen = ({navigation}) => {
                   <View style={styles.formElementContainer}>
                       <Text style={styles.fieldLabel}>Description du projet </Text>
                       <TextInput
-                          style={[styles.input, ErrorMessages.description !== "" ? styles.errorBorder : null]}
+                          style={[styles.input, ErrorMessages.description !== "" ? styles.errorBorder : null, {textAlignVertical: "top"}]}
                           onChangeText={onChangeDescription}
                           value={description}
                           placeholder="Description"
+                          multiline={true}
+                          numberOfLines={3}
                       />
                       <View style={styles.errorMessageContainer}>
                         <Text style={styles.errorMessage}> {ErrorMessages.description}</Text>
@@ -275,7 +277,6 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     input: {
-        height: 40,
         margin: 12,
         borderWidth: 1,
         padding: 10,
