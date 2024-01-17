@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import ExperienceNavigation from './components/navigationWrapper/ExperienceNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -15,6 +15,8 @@ const Tab = createBottomTabNavigator();
 
 
 export default function App() {
+  // use hook to get the device's screen dimensions
+  const { width, height } = useWindowDimensions();
   
 
   return (
@@ -53,7 +55,7 @@ export default function App() {
             tabBarHideOnKeyboard : true,
             headerTintColor: '#7FB8E1',
             headerStyle: {
-              height: 100, 
+              height: height*0.13, 
             },
 
           })

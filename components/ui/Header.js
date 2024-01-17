@@ -13,13 +13,13 @@ export default function Header({props, title}) {
 
     return (
         <View style={[styles.header, {width: width, marginLeft: -halfSafeArea}]}>
-            <TouchableOpacity onPress={() => navigation.navigate('ProjectScreen')}>
+            <TouchableOpacity onPress={() => navigation.navigate('DataCardNavigation')}>
                 <FontAwesome5 name="user-alt" size={25} color="#7FB8E1" />
             </TouchableOpacity>
             <Text style={styles.titleStyle}>
                 {title}
             </Text>
-            <TouchableOpacity onPress={() => navigation.navigate('ProjectScreen')}>
+            <TouchableOpacity onPress={() => navigation.navigate('DataCardNavigation')}>
                 <FontAwesome name="gear" size={28} color="#7FB8E1" />
             </TouchableOpacity>
         </View>
