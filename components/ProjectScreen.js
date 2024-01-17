@@ -102,6 +102,7 @@ const datacards = [
 const Confrontation = ({values, navigation}) => {
   const experience = experiences.find((item) => item.experience === values[0]);
   const datacard = datacards.find((item) => item.name === values[1]);
+  
   return (
     <View style={styles.confrontationContainer}>
         <ExperienceObject key={experience.id} item={experience} navigation={navigation}/>
@@ -138,9 +139,11 @@ export default ProjectScreen = ({navigation, route}) => {
                   <Text style={styles.title}>
                       {name}
                   </Text>
-                  <Text style={styles.numberOfCombinaisons}>
-                    {combinaisons.length}
-                  </Text>
+                  <View style={[styles.centerNumber]}>
+                    <Text style={styles.numberOfCombinaisons}>
+                      {combinaisons.length}
+                    </Text>
+                  </View>
               </View>
             </View>
             <View style={[styles.titleContainer, {marginTop: -15, marginBottom: -10, padding: 15}]}>
@@ -207,7 +210,6 @@ const styles = StyleSheet.create({
       borderColor: "#82B4DD",
       borderRadius: 2,
       backgroundColor: "white",
-      alignItems: "space-around",
       
     },
     titleWrapper: {
@@ -239,15 +241,19 @@ const styles = StyleSheet.create({
       flex: 1,
     },
     numberOfCombinaisons: {
-      fontSize: 12,
+      fontSize: 15,
       fontFamily: "Roboto",
       marginLeft: 10,
       padding: 10,
       color: "#82B4DD",
       textAlign: "center",
-      minWidth: 25,
+    },
+    centerNumber: {
+      alignItems: "center",
+      justifyContent: "center",
       borderLeftColor: "#82B4DD",
       borderLeftWidth: 1,
+      marginHorizontal: 5,
     },
     confrontationCenter: {
       flex: 1,

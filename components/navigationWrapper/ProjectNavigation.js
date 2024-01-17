@@ -66,23 +66,104 @@ export default function ProjectNavigation() {
                     title: "",
                 }}
             />
-                        <Stack.Screen 
+            <Stack.Screen 
                 name="Temperature" 
+                options={{
+                    title: "Temperature",
+                }}
                 component={TemperatureCard}
             />        
-            <Stack.Screen name="Contact" component={ContactCard} />        
-            <Stack.Screen name="Gas" component={GasCard} />        
-            <Stack.Screen name="Orientation" component={OrientationCard} />        
-            <Stack.Screen name="Force" component={ForceCard} />        
-            <Stack.Screen name="Brightness" component={BrightnessCard} />        
-            <Stack.Screen name="Elevation" component={ElevationCard} />        
-            <Stack.Screen name="Color" component={ColorCard} />        
-            <Stack.Screen name="Position" component={PositionCard} />        
-            <Stack.Screen name="Proximity" component={ProximityCard} />        
-            <Stack.Screen name="Sound" component={SoundCard} />        
-            <Stack.Screen name="Vibration" component={VibrationCard} />        
-            <Stack.Screen name="Speed" component={SpeedCard} />        
-            <Stack.Screen name="Humidity" component={HumidityCard} />  
+            <Stack.Screen 
+                name="Contact"
+                component={ContactCard}
+                options={{
+                    title: "Contact",
+                }} 
+            />        
+            <Stack.Screen 
+                name="Gas"
+                component={GasCard}
+                options={{
+                    title: "Gas",
+                }} 
+            />        
+            <Stack.Screen 
+                name="Orientation"
+                component={OrientationCard}
+                options={{
+                    title: "Orientation",
+                }} 
+            />        
+            <Stack.Screen 
+                name="Force"
+                component={ForceCard}
+                options={{
+                    title: "Force",
+                }} 
+            />        
+            <Stack.Screen 
+                name="Brightness"
+                component={BrightnessCard}
+                options={{
+                    title: "Brightness",
+                }} 
+            />        
+            <Stack.Screen 
+                name="Elevation"
+                component={ElevationCard}
+                options={{
+                    title: "Elevation",
+                }} 
+            />        
+            <Stack.Screen 
+                name="Color"
+                component={ColorCard}
+                options={{
+                    title: "Color",
+                }} 
+            />        
+            <Stack.Screen 
+                name="Position"
+                component={PositionCard}
+                options={{
+                    title: "Position",
+                }} 
+            />        
+            <Stack.Screen 
+                name="Proximity"
+                component={ProximityCard}
+                options={{
+                    title: "Proximity",
+                }} 
+            />        
+            <Stack.Screen 
+                name="Sound"
+                component={SoundCard}
+                options={{
+                    title: "Sound",
+                }} 
+            />        
+            <Stack.Screen 
+                name="Vibration"
+                component={VibrationCard}
+                options={{
+                    title: "Vibration",
+                }} 
+            />        
+            <Stack.Screen 
+                name="Speed"
+                component={SpeedCard}
+                options={{
+                    title: "Speed",
+                }} 
+            />        
+            <Stack.Screen 
+                name="Humidity"
+                component={HumidityCard}
+                options={{
+                    title: "Humidity",
+                }} 
+            />  
 
         </Stack.Navigator>
     );

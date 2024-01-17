@@ -88,31 +88,36 @@ export default VibrationCard = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text>
-        Accélération X, y, Z
-      </Text>
       <View style={styles.plotContainer}>
+        <Text>
+          Accélération X
+        </Text>
         <Plotly
           data={[xData]}
           layout={layout}
           style={styles.plot}
-        />
+          />
       </View>
       <View style={styles.plotContainer}>
+        <Text>
+          Accélération Y
+        </Text>
         <Plotly
           data={[yData]}
           layout={layout}
           style={styles.plot}
-        />
+          />
       </View>
       <View style={styles.plotContainer}>
+          <Text>
+            Accélération Z
+          </Text>
         <Plotly
           data={[zData]}
           layout={layout}
           style={styles.plot}
         />
       </View>
-      <Navigation active={"Datacard"} navigation={navigation}/> 
 
     </View>
   );

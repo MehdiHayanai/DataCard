@@ -83,10 +83,11 @@ const data = [
   ];
 
 export default NewProjectScreen = ({navigation}) => {
-    const [name, onChangeName] = useState('Sac à dos de rendonnée');
+    const [name, onChangeName] = useState('Sac à dos de randonnée');
     const [description, onChangeDescription] = useState('sac à dos intelligent munis de capteurs pour aider les randonneurs');
     const [selectedDataCard, setSelectedDataCard] = useState([]);
     const [selectedExperience, setSelectedExperience] = useState([]);
+    const [errorValue, setErrorValue] = useState(false);
     const [ErrorMessages, OnChangeErrorMessgaes ] = useState({
       "name": "",
       "description": "",
@@ -121,6 +122,10 @@ export default NewProjectScreen = ({navigation}) => {
         tmpErrorValues.name = "Le nom du projet doit contenir au moins 3 caractères";
         error = true;
       }
+      if(name.length > 25) {
+        tmpErrorValues.name = "Le nom du projet doit contenir au maximum 25 caractères";
+        error = true;
+      }
       if(selectedDataCard.length <1){
         tmpErrorValues.selectedDataCard = "Veuillez choisir au moins une data card";
         error = true;
@@ -131,6 +136,7 @@ export default NewProjectScreen = ({navigation}) => {
       }
       
       OnChangeErrorMessgaes(tmpErrorValues);
+      setErrorValue(error);
 
       if(!error){
         // resetValues();
@@ -223,7 +229,7 @@ export default NewProjectScreen = ({navigation}) => {
                       </View>
                       </View>
                   </View>
-                  <TouchableOpacity style={styles.newProjectButton} onPress={InputVerification}>
+                  <TouchableOpacity style={[styles.newProjectButton, errorValue ? styles.errorColor: styles.normalColor]} onPress={InputVerification}>
                       <Text style={styles.newProjectText}>Valider</Text>
                   </TouchableOpacity>
                 </View>
@@ -288,9 +294,8 @@ const styles = StyleSheet.create({
     errorBorder : {
       borderColor: "tomato",
     },
-      newProjectButton: {
+    newProjectButton: {
         alignItems: "center",
-        backgroundColor: "#6759F4",
         padding: 15,
         width: 200,
         margin: 10,
@@ -298,6 +303,12 @@ const styles = StyleSheet.create({
         elevation: 5,
         shadowOffset: { width: 5, height: 5 },
     },
+    errorColor: {
+      backgroundColor: "tomato",
+    },
+    normalColor: {
+      backgroundColor: "#6759F4",
+    },  
     newProjectText: {
         color: "white",
         fontSize: 15,
