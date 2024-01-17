@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import DefinitionScreen from "../Experience/DefinitionScreen";
+import DefinitionScreen from "../Templates/DefinitionScreen";
 import ExperienceScreen from "../ExperienceScreen";
 
 

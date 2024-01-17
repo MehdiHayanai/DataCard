@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import NewProjectScreen from "../NewProjectScreen";
 import CreateProjetScreen from "../CreateProjetScreen";
 import ProjectScreen from "../ProjectScreen";
-import DefinitionScreen from "../Experience/DefinitionScreen";
+import DefinitionScreen from "../Templates/DefinitionScreen";
 import BrightnessCard from '../Cards/BrightnessCard';
 import ColorCard from '../Cards/ColorCard';
 import ContactCard from '../Cards/ContactCard';
