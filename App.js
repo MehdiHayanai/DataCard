@@ -53,7 +53,7 @@ export default function App() {
             tabBarHideOnKeyboard : true,
             headerTintColor: '#7FB8E1',
             headerStyle: {
-              height: 90, 
+              height: 100, 
             },
 
           })
