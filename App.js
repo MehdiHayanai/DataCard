@@ -45,7 +45,7 @@ export default function App() {
             tabBarStyle: {
               backgroundColor: '#F5F5F5',
               paddingBottom: 10,
-              height: 70,              
+              height: 70,                         
             },
             tabBarLabelStyle: {
               fontSize: 12,
@@ -89,6 +89,7 @@ export default function App() {
           options={{
             title: 'Historique',
             tabBarLabel: 'Historique',
+            headerTitle: (props) => <Header {...props} title={"Historique"} /> 
           }}
         />
       </Tab.Navigator>

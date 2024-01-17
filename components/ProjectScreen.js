@@ -15,7 +15,6 @@ export default ProjectScreen = ({navigation}) => {
                 </TouchableOpacity>
               </View>
             </View>
-          <Navigation active={"Projet"} navigation={navigation}/>  
         </SafeAreaView>
 
     );
@@ -48,6 +47,8 @@ const styles = StyleSheet.create({
         width: 200,
         margin: 10,
         borderRadius: 5,
+        elevation: 5,
+        shadowOffset: { width: 5, height: 5 },
     },
     newProjectText: {
         color: "white",

@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import { View,SafeAreaView, ScrollView , Image, StyleSheet, Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
-import Navigation from './Navigation';
 import { MultipleSelectList, SelectList } from 'react-native-dropdown-select-list'
 
 
@@ -143,7 +142,6 @@ export default NewProjectScreen = ({navigation}) => {
                 </TouchableOpacity>
 
                 </View>
-                <Navigation active={"Projet"} navigation={navigation}/>
             </ScrollView>
         </KeyboardAvoidingView>
 
@@ -153,9 +151,8 @@ export default NewProjectScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'red',
       padding: 0,
-      margin: 0,
+      marginVertical: 10,
     },
     center: {
       margin: 0,
@@ -174,6 +171,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         width: 350,
+        elevation: 2,
+        shadowOffset: { width: 5, height: 5 },
     },
     fieldLabel: {
         color: "#82B4DD",
@@ -201,6 +200,8 @@ const styles = StyleSheet.create({
         width: 200,
         margin: 10,
         borderRadius: 5,
+        elevation: 5,
+        shadowOffset: { width: 5, height: 5 },
     },
     newProjectText: {
         color: "white",
