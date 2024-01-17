@@ -1,16 +1,14 @@
 import * as React from 'react';
 import { View,SafeAreaView, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import Navigation from './Navigation';
 
-export default HistoryScreen = ({navigation}) => {
+
+export default HistoryScreens = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.center}>
-                <Text style={{fontSize: 30, fontWeight: "bold", margin: 10}}>Mes Projets</Text>
+                <Text style={{fontSize: 30, fontWeight: "bold", margin: 10, color: "#82B4DD"}}>Projects Place Holder</Text>
             </View>
-          <Navigation active={"Projet"} navigation={navigation}/>  
         </SafeAreaView>
-
     );
 }
 

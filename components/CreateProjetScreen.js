@@ -9,7 +9,7 @@ export default ProjectScreen = ({navigation}) => {
             <View style={styles.center}>
               <View style={styles.projectContainer}>
                 <Image source={require('../assets/ampoule.png')} style={{width: 200, height: 200, margin: 10}}/>
-                <TouchableOpacity style={styles.newProjectButton} onPress={()=> navigation.navigate("NewProjectScreen")}>
+                <TouchableOpacity style={styles.newProjectButton} onPress={()=> navigation.push("NewProjectScreen")}>
                     <Text style={styles.newProjectText}>Nouveau Projet</Text>
                 </TouchableOpacity>
               </View>

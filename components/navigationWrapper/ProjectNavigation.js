@@ -1,17 +1,15 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import DefinitionScreen from "../Experience/DefinitionScreen";
-import ExperienceScreen from "../ExperienceScreen";
-
-
+import NewProjectScreen from "../NewProjectScreen";
+import CreateProjetScreen from "../CreateProjetScreen";
 
 const Stack = createNativeStackNavigator();
 
 
-export default function ExperienceNavigation() {
+export default function ProjectNavigation() {
     return (
-        <Stack.Navigator 
+        <Stack.Navigator initialRouteName="CreateProjetScreen"
             screenOptions={{
                 headerTintColor: '#7FB8E1',
                 headerStyle: {
@@ -22,18 +20,22 @@ export default function ExperienceNavigation() {
                 headerTitleAlign: 'center',
             }}
         >
-            <Stack.Screen
-                 name="ExperienceScreen"
-                 component={ExperienceScreen} 
-                 options={{ headerShown: false }}
-            />
             <Stack.Screen 
-                name="DefinitionScreen"
-                component={DefinitionScreen}
+                name="CreateProjetScreen"
+                component={CreateProjetScreen}
                 options={{
-                    title: '',
+                    headerShown: false,
                 }}
-                 />          
+            />        
+            <Stack.Screen 
+                name="NewProjectScreen"
+                component={NewProjectScreen}
+                options={{
+                    title: "",
+                    headerShown: false,
+
+                }}
+            />        
         </Stack.Navigator>
     );
 }

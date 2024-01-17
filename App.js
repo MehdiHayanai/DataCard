@@ -1,13 +1,12 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
-// You can import supported modules from npm
-// import ExperienceScreen from './components/ExperienceScreen';
 import ExperienceNavigation from './components/navigationWrapper/ExperienceNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProjectScreen from './components/CreateProjetScreen';
-import NewProjectScreen from './components/NewProjectScreen';
 import DataCardNavigation from './components/navigationWrapper/DataCardNavigation';
+import ProjectNavigation from './components/navigationWrapper/ProjectNavigation';
+import HistoryScreens from './components/HistoryScreens';
 import Header from './components/Header';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -31,9 +30,9 @@ export default function App() {
                 iconName = 'cube';
               } else if (route.name === 'ExperienceNavigation') {
                 iconName = 'stats-chart';
-              } else if (route.name === 'ProjectScreen') {
+              } else if (route.name === 'ProjectNavigation') {
                 iconName = 'add-circle';
-              } else if (route.name === 'NewProjectScreen') {
+              } else if (route.name === 'HistoriqueScreen') {
                 iconName = 'book';
               }
 
@@ -77,7 +76,7 @@ export default function App() {
 
           }}
         />
-        <Tab.Screen name="ProjectScreen" component={ProjectScreen} 
+        <Tab.Screen name="ProjectNavigation" component={ProjectNavigation} 
           options={{
             title: 'Projects',
             tabBarLabel: 'Projects',
@@ -85,7 +84,7 @@ export default function App() {
 
           }}
         />
-        <Tab.Screen name="NewProjectScreen" component={NewProjectScreen} 
+        <Tab.Screen name="HistoriqueScreen" component={HistoryScreens} 
           options={{
             title: 'Historique',
             tabBarLabel: 'Historique',

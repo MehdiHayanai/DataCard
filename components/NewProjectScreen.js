@@ -91,7 +91,21 @@ export default NewProjectScreen = ({navigation}) => {
       "description": "",
       "selectedDataCard": "",
       "selectedExperience": "",
-    })
+    });
+
+    const resetValues = () => {
+      onChangeName("");
+      onChangeDescription("");
+      setSelectedDataCard([]);
+      setSelectedExperience([]);
+      OnChangeErrorMessgaes({
+        "name": "",
+        "description": "",
+        "selectedDataCard": "",
+        "selectedExperience": "",
+      });
+      
+    }
 
     const InputVerification = () => {
       const tmpErrorValues = {
@@ -116,6 +130,10 @@ export default NewProjectScreen = ({navigation}) => {
       }
       
       OnChangeErrorMessgaes(tmpErrorValues);
+
+      if(!error){
+        resetValues();
+      }
 
     }
 
@@ -156,11 +174,16 @@ export default NewProjectScreen = ({navigation}) => {
                           setSelected={(val) => setSelectedDataCard(val)} 
                           data={data} 
                           save="value"
+                          labelStyles={{
+                            color: "#82B4DD"
+                          }}
+                          badgeStyles={{
+                            backgroundColor: "#82B4DD"
+                          }}
                           onSelect={() => console.log()} 
                           label="Categories"
                           placeholder="Data cards"
                           boxStyles={[{borderColor: "#c0c4c1", borderWidth: 1, borderRadius: 5,}, ErrorMessages.selectedDataCard !== "" ? styles.errorBorder : null] }
-                          maxHeight={200}
                       />
                       </View>
                       <View style={styles.errorMessageContainer}>
@@ -175,10 +198,15 @@ export default NewProjectScreen = ({navigation}) => {
                           data={words} 
                           placeholder="Expériences"
                           save="value"
+                          labelStyles={{
+                            color: "#82B4DD"
+                          }}
+                          badgeStyles={{
+                            backgroundColor: "#82B4DD"
+                          }}
                           onSelect={() => console.log()} 
                           label="Categories"
                           boxStyles={[{borderColor: "#c0c4c1", borderWidth: 1, borderRadius: 5,}, ErrorMessages.selectedExperience !== "" ? styles.errorBorder : null] }
-                          maxHeight={200}
                       />
                       <View style={styles.errorMessageContainer}>
                         <Text style={styles.errorMessage}> {ErrorMessages.selectedExperience}</Text>
