@@ -5,7 +5,7 @@ import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 import ExperienceNavigation from './components/navigationWrapper/ExperienceNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ProjectScreen from './components/ProjectScreen';
+import ProjectScreen from './components/CreateProjetScreen';
 import NewProjectScreen from './components/NewProjectScreen';
 import DataCardNavigation from './components/navigationWrapper/DataCardNavigation';
 import Header from './components/Header';

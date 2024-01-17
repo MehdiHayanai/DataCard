@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { View,SafeAreaView, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import Navigation from './Navigation';
 
 export default ProjectScreen = ({navigation}) => {
 

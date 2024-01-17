@@ -1,38 +1,24 @@
 import * as React from 'react';
 import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import DataCardObject from '../ui/DataCardObject';
 
-    const experiences = [
-        { id: "0", name: "Humidity", icon: require('../../assets/experienceIcons/humidite.png'), color:"#C2FEFE" },
-        { id: "1", name: "Temperature", icon: require('../../assets/experienceIcons/temperature.png'), color:"#FD9093" },
-        { id: "2", name: "Contact", icon: require('../../assets/experienceIcons/contact.png'), color:"#C3FFDD" },
-        { id: "3", name: "Gas", icon: require('../../assets/experienceIcons/gaz.png'), color:"#E4C2F6" },
-        { id: "4", name: "Orientation", icon: require('../../assets/experienceIcons/orientation.png'), color:"#C2CAFC" },
-        { id: "6", name: "Force", icon: require('../../assets/experienceIcons/force.png'), color:"#CFF380" },
-        { id: "5", name: "Brightness", icon: require('../../assets/experienceIcons/luminosite.png'), color:"#C2FEFE" },
-        { id: "7", name: "Elevation", icon: require('../../assets/experienceIcons/elevation.png'), color:"#82B4DD" },
-        { id: "8", name: "Color", icon: require('../../assets/experienceIcons/color.png'), color:"#8CE7D4" },
-        { id: "9", name: "Position", icon: require('../../assets/experienceIcons/position.png'), color:"#C2CAFC" },
-        { id: "10", name: "Proximity", icon: require('../../assets/experienceIcons/proximite.png'), color:"#C2FEFE" },
-        { id: "11", name: "Sound", icon: require('../../assets/experienceIcons/son.png'), color:"#E9CF36" },
-        { id: "12", name: "Vibration", icon: require('../../assets/experienceIcons/vibration.png'), color:"#82B4DD" },
-        { id: "13", name: "Speed", icon: require('../../assets/experienceIcons/vitesse.png'), color:"#8CE7D4" },
-      ];
+const experiences = [
+    { id: "0", name: "Humidity", icon: require('../../assets/experienceIcons/humidite.png'), color:"#C2FEFE" },
+    { id: "1", name: "Temperature", icon: require('../../assets/experienceIcons/temperature.png'), color:"#FD9093" },
+    { id: "2", name: "Contact", icon: require('../../assets/experienceIcons/contact.png'), color:"#C3FFDD" },
+    { id: "3", name: "Gas", icon: require('../../assets/experienceIcons/gaz.png'), color:"#E4C2F6" },
+    { id: "4", name: "Orientation", icon: require('../../assets/experienceIcons/orientation.png'), color:"#C2CAFC" },
+    { id: "6", name: "Force", icon: require('../../assets/experienceIcons/force.png'), color:"#CFF380" },
+    { id: "5", name: "Brightness", icon: require('../../assets/experienceIcons/luminosite.png'), color:"#C2FEFE" },
+    { id: "7", name: "Elevation", icon: require('../../assets/experienceIcons/elevation.png'), color:"#82B4DD" },
+    { id: "8", name: "Color", icon: require('../../assets/experienceIcons/color.png'), color:"#8CE7D4" },
+    { id: "9", name: "Position", icon: require('../../assets/experienceIcons/position.png'), color:"#C2CAFC" },
+    { id: "10", name: "Proximity", icon: require('../../assets/experienceIcons/proximite.png'), color:"#C2FEFE" },
+    { id: "11", name: "Sound", icon: require('../../assets/experienceIcons/son.png'), color:"#E9CF36" },
+    { id: "12", name: "Vibration", icon: require('../../assets/experienceIcons/vibration.png'), color:"#82B4DD" },
+    { id: "13", name: "Speed", icon: require('../../assets/experienceIcons/vitesse.png'), color:"#8CE7D4" },
+  ];
 
-const Experience = ({ item, navigation }) => {
-  return (
-    <TouchableOpacity style={[styles.experienceContainer, { backgroundColor: item.color }]} onPress={()=> navigation.navigate(item.name)}>
-      <View style={styles.experience}>
-        <Text style={styles.title}>
-          {item.name}
-        </Text>
-        <Image
-          source={item.icon}
-          style={styles.experienceIcon}
-        />
-      </View>
-    </TouchableOpacity>
-  );
-};
 
 const CardsZone = ({navigation}) => {
   return (
@@ -40,7 +26,7 @@ const CardsZone = ({navigation}) => {
       <View style={styles.experienceView}>
         {
           experiences.map((item) => (
-            <Experience key={item.id} item={item}  navigation={navigation}/>
+            <DataCardObject key={item.id} item={item}  navigation={navigation}/>
           ))
         }
       </View>
@@ -62,29 +48,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: "wrap",
     alignItems: "center",
-  },
-  experienceContainer: {
-    width: 100,
-    height: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 15,
-    margin: 10,
-    elevation: 2,
-    shadowOffset: { width: -3, height: 6 },
-  },
-  experienceIcon: {
-    height: 40,
-    width: 40,
-  },
-  title: {
-    fontWeight: "bold",
-    marginBottom: 5,
-    textAlign: "center",
-  },
-  experience: {
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 
