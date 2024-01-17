@@ -21,7 +21,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName='ExperienceNavigation'
+        initialRouteName='NewProjectScreen'
         screenOptions={
           ({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
