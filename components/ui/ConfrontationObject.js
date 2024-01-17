@@ -108,7 +108,7 @@ const ConfrontationObject = ({values, navigation}) => {
         <ExperienceObject key={experience.id} item={experience} navigation={navigation}/>
         <Entypo name="cross" size={30} color="#7FB8E1" />
         <DataCardObject key={datacard.id + "dataCard"} item={datacard} navigation={navigation}/>
-        <TouchableOpacity style={styles.nextButton} onPress={() => console.log("Pressed")}>
+        <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate("ConfrontationTemplate", {datacard: datacard, experience: experience})}>
           <Ionicons name="chevron-forward-outline" size={30} color="white" />
         </TouchableOpacity>
     </View>

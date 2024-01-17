@@ -19,6 +19,7 @@ import SpeedCard from '../Cards/SpeedCard';
 import TemperatureCard from '../Cards/TemperatureCard';
 import VibrationCard from '../Cards/VibrationCard';
 import HumidityCard from '../Cards/HumidityCard';
+import ConfrontationTemplate from "../Templates/ConfrontationTemplate";
 
 const Stack = createNativeStackNavigator();
 
@@ -162,6 +163,13 @@ export default function ProjectNavigation() {
                 component={HumidityCard}
                 options={{
                     title: "Humidity",
+                }} 
+            />  
+            <Stack.Screen 
+                name="ConfrontationTemplate"
+                component={ConfrontationTemplate}
+                options={{
+                    title: "",
                 }} 
             />  
 
