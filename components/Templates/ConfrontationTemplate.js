@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { View, StyleSheet, Text, TextInput, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity} from 'react-native';
-import { Ionicons, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import DataCardObject from '../ui/DataCardObject';
 import ExperienceObject from '../ui/ExperienceObject';
 
@@ -36,7 +36,14 @@ const ConfrontationTemplate = ({navigation, route}) => {
                     </ScrollView>
                 </View>
             </ScrollView>
-            <TouchableOpacity style={styles.aiButton}>
+            <TouchableOpacity style={styles.validationButton}>
+                <View style={{alignItems: "center", justifyContent: "center"}}>
+                    <FontAwesome5 name="check" size={35} color="#6759F4" />
+                </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.aiButton} onPressOut={()=> {
+                navigation.bcak
+            }}>
                 <View style={{alignItems: "center", justifyContent: "center"}}>
                     <MaterialCommunityIcons name="robot-excited" size={35} color="white" />
                 </View>
@@ -93,11 +100,27 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         alignItems: "center",
-        bottom: 10,
-        right: 20,
+        bottom: 12,
+        left: 25,
         padding: 0,
         margin: 0,
         paddingBottom: 5,
+    },
+    validationButton : {
+        position: "absolute",
+        backgroundColor: "#FFF",
+        borderRadius: 200,
+        height: 65,
+        width: 65,
+        justifyContent: "center",
+        alignItems: "center",
+        alignItems: "center",
+        bottom: 12,
+        right: 25,
+        padding: 0,
+        margin: 0,
+        borderWidth: 1,
+        borderColor: "#6759F4",
     }
     
 });

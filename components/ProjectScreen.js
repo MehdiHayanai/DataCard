@@ -16,9 +16,6 @@ export default ProjectScreen = ({navigation, route}) => {
       combIndex++;
     }
   }
-  console.log("combinaisons: ", combinaisons);
-
-    console.log("ProjectScreen props: ", name, description, selectedDataCard, selectedExperience);
 
     return (
         <SafeAreaView style={styles.container}>
