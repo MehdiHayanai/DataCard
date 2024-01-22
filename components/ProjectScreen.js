@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { View,SafeAreaView, Image, StyleSheet, Text, FlatList, TouchableOpacity} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View,SafeAreaView, Image, StyleSheet, Text, FlatList, TouchableOpacity, DeviceEventEmitter} from 'react-native';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import ConfrontationObject from './ui/ConfrontationObject';
+import { useEffect, useState } from 'react';
 
 
 
@@ -12,10 +12,23 @@ export default ProjectScreen = ({navigation, route}) => {
 
   for (let i = 0; i < selectedExperience.length; i++) {
     for (let j = 0; j < selectedDataCard.length; j++) {
-      combinaisons.push({"id": combIndex, "values": [selectedExperience[i], selectedDataCard[j]]});
+      combinaisons.push({"id": combIndex, "values": [selectedExperience[i], selectedDataCard[j]], "confrontationText": ""});
       combIndex++;
     }
   }
+  const [combinaisonsList, setCombinaisonsList] = useState(combinaisons);
+  const [projectInformation, setProjectInformation] = useState({
+    "name": name,
+    "description": description,
+  });
+
+  DeviceEventEmitter.addListener("confrontation.data", (data) => {
+    let combinaisonsListCopy = combinaisonsList;
+    let editedElement = combinaisonsListCopy.find((el) => el.id === data.id);
+    editedElement.confrontationText = data.confrontationText;
+    setCombinaisonsList(combinaisonsListCopy);
+  });
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -25,11 +38,11 @@ export default ProjectScreen = ({navigation, route}) => {
                   <Text style={styles.title}>
                       {name}
                   </Text>
-                  <View style={[styles.centerNumber]}>
-                    <Text style={styles.numberOfCombinaisons}>
-                      {combinaisons.length}
-                    </Text>
-                  </View>
+                  <TouchableOpacity style={styles.validationButton}>
+                    <View style={{alignItems: "center", justifyContent: "center"}}>
+                        <MaterialCommunityIcons name="check" size={20} color="#6759F4" />
+                    </View>
+                  </TouchableOpacity>
               </View>
             </View>
             <View style={[styles.titleContainer, {marginTop: -15, marginBottom: -10, padding: 15}]}>
@@ -45,7 +58,7 @@ export default ProjectScreen = ({navigation, route}) => {
               <FlatList  
                 style={styles.confrontation}    
                 data={combinaisons}
-                renderItem={({item}) => <ConfrontationObject key={item.id} values={item.values} navigation={navigation}/>}
+                renderItem={({item}) => <ConfrontationObject key={item.id} item={item} navigation={navigation} />}
                 keyExtractor={(item) => item.id}
               />
 
@@ -101,8 +114,8 @@ const styles = StyleSheet.create({
     titleWrapper: {
       flexDirection: "row",
       alignItems: "center",
-      justifyContent: "center",
-    
+      justifyContent: "space-around",
+      justifyItems: "stretch",    
     },
     icon: {
       marginRight: 10,
@@ -114,14 +127,6 @@ const styles = StyleSheet.create({
     confrontation: {
       marginVertical: 20,
       flex: 1,
-    },
-    numberOfCombinaisons: {
-      fontSize: 15,
-      fontFamily: "Roboto",
-      marginLeft: 10,
-      padding: 10,
-      color: "#82B4DD",
-      textAlign: "center",
     },
     centerNumber: {
       alignItems: "center",
@@ -135,7 +140,17 @@ const styles = StyleSheet.create({
       alignItems: "center",
       justifyContent: "center",
     },
-
+    validationButton: {
+      backgroundColor: "#FFF",
+      borderWidth: 1,
+      borderColor: "#6759F4",
+      height: 40,
+      width: 40,
+      // borderRadius: 200,
+      alignItems: "center",
+      justifyContent: "center",
+      marginLeft: 20,
+    },
     
   });
   

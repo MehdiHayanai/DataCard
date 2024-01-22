@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { View,SafeAreaView, ScrollView , Image, StyleSheet, Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { MultipleSelectList, SelectList } from 'react-native-dropdown-select-list'
+import { StaticDataCards, StaticExperiences } from "./staticVariables/CommonVaribales";
 
 
 const data = [
@@ -85,6 +86,7 @@ const data = [
 export default NewProjectScreen = ({navigation}) => {
     const [name, onChangeName] = useState('Sac à dos de randonnée');
     const [description, onChangeDescription] = useState('sac à dos intelligent munis de capteurs pour aider les randonneurs');
+
     const [selectedDataCard, setSelectedDataCard] = useState([]);
     const [selectedExperience, setSelectedExperience] = useState([]);
     const [errorValue, setErrorValue] = useState(false);
@@ -211,7 +213,7 @@ export default NewProjectScreen = ({navigation}) => {
                       <View style={styles.multiSelectContainer}>
                       <MultipleSelectList 
                           setSelected={(val) => setSelectedExperience(val)} 
-                          data={words} 
+                          data={words}
                           placeholder="Expériences"
                           save="value"
                           labelStyles={{

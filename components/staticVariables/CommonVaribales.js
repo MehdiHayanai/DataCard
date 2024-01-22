@@ -17,7 +17,6 @@ export const  StaticDataCards = [
     { id: "UJ0jB8y0", name: "Speed", icon: require('../../assets/experienceIcons/vitesse.png'), color:"#8CE7D4" },
 ];
 
-['5wRTxXgE', 'qKji7Yt0', 'FiVrz3Ir', 'NbyrtZr7', 'k1OCh38l', 'iXAufTOl', 'wi4mFHUy', 'ddquBRSg', 'v2RHqG3O', 'ZHggKd6u', 'SbOrLTw0', '7RUCIR5X']
 
 export const StaticExperiences = [
     { 

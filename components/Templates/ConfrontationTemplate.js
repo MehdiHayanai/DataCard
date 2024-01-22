@@ -1,14 +1,29 @@
-import React, {useState} from 'react';
-import { View, StyleSheet, Text, TextInput, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { View, StyleSheet, Text, TextInput, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, DeviceEventEmitter} from 'react-native';
 import { FontAwesome5, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import DataCardObject from '../ui/DataCardObject';
 import ExperienceObject from '../ui/ExperienceObject';
 
 const ConfrontationTemplate = ({navigation, route}) => {
-    const {datacard, experience} = route.params;
+    const {datacard, experience, item} = route.params;
     const [confrontation, onChangeConfrontation] = useState("");
     const placeholder = "Confronter l'expérience de " + experience.experience + " avec la carte de données " + datacard.name  + "."
-    console.log(experience)
+
+    const handleEmition = () => {
+        item["confrontationText"] = confrontation;
+        DeviceEventEmitter.emit("confrontation.data", item);
+        navigation.goBack();
+      }
+    useEffect(() => {
+    if(item.confrontationText !== "") {
+        onChangeConfrontation(item.confrontationText);
+    }
+    return () => {
+        DeviceEventEmitter.removeAllListeners("confrontation.data")
+        };
+    }, []);
+
+
     return (
 
         <KeyboardAvoidingView
@@ -36,14 +51,12 @@ const ConfrontationTemplate = ({navigation, route}) => {
                     </ScrollView>
                 </View>
             </ScrollView>
-            <TouchableOpacity style={styles.validationButton}>
+            <TouchableOpacity style={styles.validationButton} onPress={() => handleEmition()}>
                 <View style={{alignItems: "center", justifyContent: "center"}}>
                     <FontAwesome5 name="check" size={35} color="#6759F4" />
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.aiButton} onPressOut={()=> {
-                navigation.bcak
-            }}>
+            <TouchableOpacity style={styles.aiButton} onPressOut={()=> {console.log("Ai answer")}}>
                 <View style={{alignItems: "center", justifyContent: "center"}}>
                     <MaterialCommunityIcons name="robot-excited" size={35} color="white" />
                 </View>
