@@ -239,3 +239,108 @@ export const getExperiences = () => {
         });
     });
 }
+
+export const insertProject = (projectInformation) => {
+    return new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                `INSERT INTO project (name, description, user_id) VALUES (?, ?, ?)`,
+                [projectInformation.name, projectInformation.description, projectInformation.user_id],
+                (_, { insertId }) => {
+                    resolve(insertId);
+                },
+                (_, error) => {
+                    reject(error);
+                }
+            );
+        });
+    });
+}
+
+export const insertConfrontation = (confrontationData) => {
+    return new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                `INSERT INTO confrontation (project_datacard_id, project_experience_id, project_id, confrontation_content) VALUES (?, ?, ?, ?)`,
+                [confrontationData.project_datacard_id, confrontationData.project_experience_id, confrontationData.project_id, confrontationData.confrontation_content],
+                (_, { insertId }) => {
+                    resolve(insertId);
+                },
+                (_, error) => {
+                    reject(error);
+                }
+            );
+        });
+    });
+}
+
+export const getProjects = () => {
+    return new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                'SELECT * FROM project',
+                [],
+                (_, { rows: { _array } }) => {
+                    const projects = _array.map(({ id, name, description, user_id }) => ({ id, name, description, user_id }));
+                    resolve(projects);
+                },
+                (_, error) => {
+                    reject(error);
+                }
+            );
+        });
+    });
+}
+
+export const getConfrontations = () => {
+    return new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                'SELECT * FROM confrontation',
+                [],
+                (_, { rows: { _array } }) => {
+                    const confrontations = _array.map(({ id, project_datacard_id, project_experience_id, project_id, confrontation_content }) => ({ id, project_datacard_id, project_experience_id, project_id, confrontation_content }));
+                    resolve(confrontations);
+                },
+                (_, error) => {
+                    reject(error);
+                }
+            );
+        });
+    });
+}
+
+
+export const deleteAllProjects = () => {
+    return new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                'DELETE FROM project',
+                [],
+                (_, { rows: { _array } }) => {
+                    resolve("All projects deleted");
+                },
+                (_, error) => {
+                    reject(error);
+                }
+            );
+        });
+    });
+}
+
+export const deleteAllConfrontations = () => {
+    return new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                'DELETE FROM confrontation',
+                [],
+                (_, { rows: { _array } }) => {
+                    resolve("All confrontations deleted");
+                },
+                (_, error) => {
+                    reject(error);
+                }
+            );
+        });
+    });
+}

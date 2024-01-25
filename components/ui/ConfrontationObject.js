@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import { View, StyleSheet, TouchableOpacity, DeviceEventEmitter} from 'react-native';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import ExperienceObject from './ExperienceObject';
@@ -11,12 +11,17 @@ const ConfrontationObject = (props) => {
   const values = item.values;
   const experience = StaticExperiences.find((el) => el.experience === values[0]);
   const datacard = StaticDataCards.find((el) => el.name === values[1]);
+  const [confrontationText, setConfrontationText] = useState(item.confrontationText);
+  
+
+  DeviceEventEmitter.addListener("confrontation.data", (data) => {
+    setConfrontationText(data.confrontationText);
+  });
 
 
 
   useEffect(() => {
-    console.log("ConfrontationObject");
-    console.log(values);
+    setConfrontationText(item.confrontationText);
   }, []);
   
   return (
@@ -24,8 +29,8 @@ const ConfrontationObject = (props) => {
         <ExperienceObject key={experience.id} item={experience} navigation={navigation}/>
         <Entypo name="cross" size={30} color="#7FB8E1" />
         <DataCardObject key={datacard.id + "dataCard"} item={datacard} navigation={navigation}/>
-        <TouchableOpacity style={styles.nextButton} onPress={() => navigation.navigate("ConfrontationTemplate", {datacard: datacard, experience: experience, item: item})}>
-          <Ionicons name="chevron-forward-outline" size={30} color="white" />
+        <TouchableOpacity style={confrontationText === "" ? styles.nextButton : styles.nextButtonFilled} onPress={() => navigation.navigate("ConfrontationTemplate", {datacard: datacard, experience: experience, item: item})}>
+          {confrontationText === "" ? <Ionicons name="chevron-forward-outline" size={30} color="white" /> : <Ionicons name="checkmark" size={30} color="white" />}
         </TouchableOpacity>
     </View>
   );
@@ -52,7 +57,16 @@ const styles = StyleSheet.create({
         width: 50,
         justifyContent: "center",
         alignItems: "center",
-    }
+    },
+    nextButtonFilled: {
+        marginHorizontal: 10,
+        backgroundColor: "#8ED081",
+        borderRadius: 200,
+        height: 50,
+        width: 50,
+        justifyContent: "center",
+        alignItems: "center",
+    },
     });
 
 

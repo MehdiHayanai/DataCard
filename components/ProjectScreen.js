@@ -2,7 +2,8 @@ import { View,SafeAreaView, Image, StyleSheet, Text, FlatList, TouchableOpacity,
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import ConfrontationObject from './ui/ConfrontationObject';
 import { useEffect, useState } from 'react';
-
+import { StaticDataCards, StaticExperiences } from './staticVariables/CommonVaribales';
+import { insertConfrontation, insertProject } from '../data/dataCatdDb';
 
 
 export default ProjectScreen = ({navigation, route}) => {
@@ -17,10 +18,45 @@ export default ProjectScreen = ({navigation, route}) => {
     }
   }
   const [combinaisonsList, setCombinaisonsList] = useState(combinaisons);
+  const [confrontationData, setConfrontationData] = useState([]); // [experience, dataCard, text
   const [projectInformation, setProjectInformation] = useState({
     "name": name,
     "description": description,
+    "user_id": 1,
   });
+  
+
+  const handleSubmission = () => {
+    let confrontationDataHolder = [];
+    let insertedProjectId = 0;
+    insertProject(projectInformation).then((insertId) => {
+      console.log('Project inserted with ID:', insertId);
+      insertedProjectId = insertId;
+      combinaisonsList.forEach((el) => {
+        let experienceId = StaticExperiences.find((experience) => experience.experience === el.values[0]).id;
+        let dataCardId = StaticDataCards.find((dataCard) => dataCard.name === el.values[1]).id;
+        console.log("exp", experienceId, "dcrd", dataCardId)
+        let confrontationContent = el.confrontationText;
+        confrontationDataHolder.push({"project_experience_id": experienceId, "project_datacard_id": dataCardId, "confrontation_content": confrontationContent, "project_id": insertedProjectId});
+       }
+      );
+      setConfrontationData(confrontationDataHolder);
+      confrontationData.forEach((confrontationDatael) => {
+        insertConfrontation(confrontationDatael).then((insertIdconfr) => {
+          console.log('Confrontations inserted with ID:', insertIdconfr);
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'HistoriqueScreen' }],
+          });
+        }).catch((error) => {
+          console.error('Error inserting confrontations:', error);
+        });
+      });
+    }).catch((error) => {
+      console.error('Error inserting project:', error);
+    });
+
+  }
 
   DeviceEventEmitter.addListener("confrontation.data", (data) => {
     let combinaisonsListCopy = combinaisonsList;
@@ -38,7 +74,7 @@ export default ProjectScreen = ({navigation, route}) => {
                   <Text style={styles.title}>
                       {name}
                   </Text>
-                  <TouchableOpacity style={styles.validationButton}>
+                  <TouchableOpacity style={styles.validationButton} onPress={()=> handleSubmission()}>
                     <View style={{alignItems: "center", justifyContent: "center"}}>
                         <MaterialCommunityIcons name="check" size={20} color="#6759F4" />
                     </View>
