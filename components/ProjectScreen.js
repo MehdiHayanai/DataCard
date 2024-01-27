@@ -40,6 +40,10 @@ export default ProjectScreen = ({navigation, route}) => {
       console.log('Project and Confrontations insertion successful');
       console.log('Project ID:', projectId);
       console.log('Confrontation IDs:', confrontationIds);
+      navigation.reset({
+        index: 0,
+        routes : [{name: 'HistoriqueScreen'}]
+      });
     })
     .catch((error) => {
       console.error('Error inserting project and confrontations:', error);
