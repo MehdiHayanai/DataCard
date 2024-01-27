@@ -1,42 +1,38 @@
-import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 
+export const ProjectObject = (props) => {
+  const { item, navigation } = props;
+  const { name, description, id } = item;
 
-
-
-export const ProjectObject = ({ project }) => {
-    const {  name, description } = project;
-    const navigation = useNavigation();
-
-    return (
-        <View style={styles.project}>
-        <TouchableOpacity onPress={() => navigation.navigate('ProjectScreen', { project })}>
-            <Text style={styles.projectName}>{name}</Text>
-        </TouchableOpacity>
-        </View>
-    );
+  return (
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Project", { project: item })}
+      style={styles.project}
+    >
+      <Text style={styles.projectName}>{name}</Text>
+      <Text style={styles.projectDescription}>{description}</Text>
+    </TouchableOpacity>
+  );
 };
 
-
 const styles = StyleSheet.create({
-    project: {
-        backgroundColor: '#F8F8F8',
-        padding: 10,
-        marginVertical: 2,
-        marginHorizontal: 10,
-        borderRadius: 10,
-        elevation: 1,
-        shadowOffset: { width: 1, height: 1 },
-    },
-    projectName: {
-        fontSize: 18,
-        fontFamily: "Roboto",
-        color: "#7FB8E1",
-    },
-    projectDescription: {
-        fontSize: 14,
-        fontFamily: "Roboto",
-        color: "#BABEC2",
-    },
+  project: {
+    backgroundColor: "#F8F8F8",
+    padding: 20,
+    marginVertical: 3,
+    marginHorizontal: 10,
+    borderRadius: 10,
+    elevation: 1,
+    shadowOffset: { width: 1, height: 1 },
+  },
+  projectName: {
+    fontSize: 18,
+    fontFamily: "Roboto",
+    color: "#7FB8E1",
+  },
+  projectDescription: {
+    fontSize: 14,
+    fontFamily: "Roboto",
+    color: "#BABEC2",
+  },
 });
