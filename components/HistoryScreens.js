@@ -1,6 +1,7 @@
-import * as React from 'react';
 import { View,SafeAreaView, Image, StyleSheet, Text, TouchableOpacity, Pressable, FlatList } from 'react-native';
 import { getConfrontations, getProjects, deleteAllProjects, deleteAllConfrontations} from '../data/dataCatdDb';
+import { useEffect, useState } from 'react';
+import { ProjectObject } from './ui/ProjectObject';
 
 const projectView = (project) => {
   return (
@@ -13,7 +14,7 @@ const projectView = (project) => {
 }
 
 export default HistoryScreens = ({navigation}) => {
-  const [projects, setProjects] = React.useState([]);
+  const [projects, setProjects] = useState([]);
 
     const showProjects = () => {
       console.log("Test");
@@ -49,10 +50,11 @@ export default HistoryScreens = ({navigation}) => {
       showConfrontations();
     }
    
-    React.useEffect(() => {
+    useEffect(() => {
       showProjects();
       showConfrontations();
     }, []);
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.center}>

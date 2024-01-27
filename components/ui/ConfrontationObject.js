@@ -14,9 +14,9 @@ const ConfrontationObject = (props) => {
   const [confrontationText, setConfrontationText] = useState(item.confrontationText);
   
 
-  DeviceEventEmitter.addListener("confrontation.data", (data) => {
-    setConfrontationText(data.confrontationText);
-  });
+  // DeviceEventEmitter.addListener("confrontation.data", (data) => {
+  //   setConfrontationText(data.confrontationText);
+  // });
 
 
 

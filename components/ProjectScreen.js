@@ -3,7 +3,7 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import ConfrontationObject from './ui/ConfrontationObject';
 import { useEffect, useState } from 'react';
 import { StaticDataCards, StaticExperiences } from './staticVariables/CommonVaribales';
-import { insertConfrontation, insertProject } from '../data/dataCatdDb';
+import { insertConfrontation, insertProject, insertProjectAndConfrontations } from '../data/dataCatdDb';
 
 
 export default ProjectScreen = ({navigation, route}) => {
@@ -28,33 +28,23 @@ export default ProjectScreen = ({navigation, route}) => {
 
   const handleSubmission = () => {
     let confrontationDataHolder = [];
-    let insertedProjectId = 0;
-    insertProject(projectInformation).then((insertId) => {
-      console.log('Project inserted with ID:', insertId);
-      insertedProjectId = insertId;
-      combinaisonsList.forEach((el) => {
+    combinaisonsList.forEach((el) => {
         let experienceId = StaticExperiences.find((experience) => experience.experience === el.values[0]).id;
         let dataCardId = StaticDataCards.find((dataCard) => dataCard.name === el.values[1]).id;
-        console.log("exp", experienceId, "dcrd", dataCardId)
         let confrontationContent = el.confrontationText;
-        confrontationDataHolder.push({"project_experience_id": experienceId, "project_datacard_id": dataCardId, "confrontation_content": confrontationContent, "project_id": insertedProjectId});
-       }
-      );
-      setConfrontationData(confrontationDataHolder);
-      confrontationData.forEach((confrontationDatael) => {
-        insertConfrontation(confrontationDatael).then((insertIdconfr) => {
-          console.log('Confrontations inserted with ID:', insertIdconfr);
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'HistoriqueScreen' }],
-          });
-        }).catch((error) => {
-          console.error('Error inserting confrontations:', error);
-        });
-      });
-    }).catch((error) => {
-      console.error('Error inserting project:', error);
+        confrontationDataHolder.push({"project_experience_id": experienceId, "project_datacard_id": dataCardId, "confrontation_content": confrontationContent});
     });
+
+    insertProjectAndConfrontations(projectInformation, confrontationDataHolder)
+    .then(({ projectId, confrontationIds }) => {
+      console.log('Project and Confrontations insertion successful');
+      console.log('Project ID:', projectId);
+      console.log('Confrontation IDs:', confrontationIds);
+    })
+    .catch((error) => {
+      console.error('Error inserting project and confrontations:', error);
+    });
+
 
   }
 

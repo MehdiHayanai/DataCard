@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, SafeAreaView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import ExperienceNavigation from './components/navigationWrapper/ExperienceNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ProjectScreen from './components/CreateProjetScreen';
 import DataCardNavigation from './components/navigationWrapper/DataCardNavigation';
 import ProjectNavigation from './components/navigationWrapper/ProjectNavigation';
 import HistoryScreens from './components/HistoryScreens';
 import Header from './components/ui/Header';
 import { Ionicons } from '@expo/vector-icons';
+import { createDatabase } from './data/dataCatdDb';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +18,12 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   // use hook to get the device's screen dimensions
   const { width, height } = useWindowDimensions();
+
+  useEffect(() => {
+    createDatabase();
+
+  }, []);
+
   
 
   return (

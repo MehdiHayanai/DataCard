@@ -274,6 +274,63 @@ export const insertConfrontation = (confrontationData) => {
     });
 }
 
+export const insertProjectAndConfrontations = (projectInformation, confrontationDatas) => {
+    return new Promise((resolve, reject) => {
+      db.transaction(
+        (tx) => {
+          // Step 1: Insert the project
+          tx.executeSql(
+            `INSERT INTO project (name, description, user_id) VALUES (?, ?, ?)`,
+            [projectInformation.name, projectInformation.description, projectInformation.user_id],
+            (_, { insertId: projectId }) => {
+              // Step 2: Insert multiple confrontations associated with the project
+              const confrontationInsertPromises = confrontationDatas.map((confrontationData) => {
+                return new Promise((resolveConfrontation, rejectConfrontation) => {
+                  tx.executeSql(
+                    `INSERT INTO confrontation (project_datacard_id, project_experience_id, project_id, confrontation_content) VALUES (?, ?, ?, ?)`,
+                    [
+                      confrontationData.project_datacard_id,
+                      confrontationData.project_experience_id,
+                      projectId, // Use the projectId from the previous insert
+                      confrontationData.confrontation_content,
+                    ],
+                    (_, { insertId: confrontationId }) => {
+                      resolveConfrontation(confrontationId);
+                    },
+                    (_, errorConfrontation) => {
+                      rejectConfrontation(errorConfrontation);
+                      return true; // Propagate the error to stop the transaction
+                    }
+                  );
+                });
+              });
+  
+              // Wait for all confrontation inserts to complete
+              Promise.all(confrontationInsertPromises)
+                .then((confrontationIds) => {
+                  resolve({ projectId, confrontationIds });
+                })
+                .catch((error) => {
+                  reject(error);
+                  return true; // Propagate the error to stop the transaction
+                });
+            },
+            (_, errorProject) => {
+              reject(errorProject);
+              return true; // Propagate the error to stop the transaction
+            }
+          );
+        },
+        (error) => {
+          console.error('Transaction error:', error);
+        },
+        () => {
+          console.log('Transaction complete');
+        }
+      );
+    });
+  };
+
 export const getProjects = () => {
     return new Promise((resolve, reject) => {
         db.transaction(tx => {
