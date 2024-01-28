@@ -20,10 +20,8 @@ export default HistoryScreens = ({ navigation }) => {
   const [projects, setProjects] = useState([]);
 
   const showProjects = () => {
-    console.log("Test");
     getProjects()
       .then((data) => {
-        console.log(data);
         setProjects(data);
       })
       .catch((error) => {
@@ -32,11 +30,9 @@ export default HistoryScreens = ({ navigation }) => {
   };
 
   const showConfrontations = () => {
-    console.log("Test confrontation");
-
     getConfrontations()
       .then((data) => {
-        console.log(data);
+        console.log("Confrontation data loaded");
       })
       .catch((error) => {
         console.error(error);
@@ -45,14 +41,14 @@ export default HistoryScreens = ({ navigation }) => {
   const deleteAll = () => {
     deleteAllProjects()
       .then((data) => {
-        console.log(data);
+        console.log("Data deleted from projects");
       })
       .catch((error) => {
         console.error(error);
       });
     deleteAllConfrontations()
       .then((data) => {
-        console.log(data);
+        console.log("Data deleted from confrontations");
       })
       .catch((error) => {
         console.error(error);
