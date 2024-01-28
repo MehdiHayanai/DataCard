@@ -1,5 +1,4 @@
 import { REACT_APP_OPEN_AI_API_KEY } from "@env";
-const apiKey = REACT_APP_OPEN_AI_API_KEY;
 
 export function AICompletion(projectName, sensorName, experience) {
   const apiKey = REACT_APP_OPEN_AI_API_KEY;
