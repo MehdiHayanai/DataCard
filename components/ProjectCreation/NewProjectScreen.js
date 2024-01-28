@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
 import {
   View,
-  SafeAreaView,
   ScrollView,
-  Image,
   StyleSheet,
   Text,
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
 } from "react-native";
-import {
-  MultipleSelectList,
-  SelectList,
-} from "react-native-dropdown-select-list";
+import { MultipleSelectList } from "react-native-dropdown-select-list";
 import {
   StaticDataCards,
   StaticExperiences,
@@ -181,15 +176,15 @@ const words = [
 ];
 
 export default NewProjectScreen = ({ navigation }) => {
-  const [name, onChangeName] = useState("Sac à dos de randonnée");
-  const [description, onChangeDescription] = useState(
-    "sac à dos intelligent munis de capteurs pour aider les randonneurs"
-  );
+  const [name, onChangeName] = useState(""); // État pour le nom du projet
+  const [description, onChangeDescription] = useState(""); // État pour la description du projet
 
-  const [selectedDataCard, setSelectedDataCard] = useState([]);
-  const [selectedExperience, setSelectedExperience] = useState([]);
-  const [errorValue, setErrorValue] = useState(false);
+  const [selectedDataCard, setSelectedDataCard] = useState([]); // État pour les cartes de données sélectionnées
+  const [selectedExperience, setSelectedExperience] = useState([]); // État pour les expériences sélectionnées
+
+  const [errorValue, setErrorValue] = useState(false); // État pour indiquer s'il y a des erreurs
   const [ErrorMessages, OnChangeErrorMessgaes] = useState({
+    // État pour les messages d'erreur
     name: "",
     description: "",
     selectedDataCard: "",
@@ -197,6 +192,7 @@ export default NewProjectScreen = ({ navigation }) => {
   });
 
   const resetValues = () => {
+    // Fonction pour réinitialiser toutes les valeurs de l'état
     onChangeName("");
     onChangeDescription("");
     setSelectedDataCard([]);
@@ -210,14 +206,17 @@ export default NewProjectScreen = ({ navigation }) => {
   };
 
   const InputVerification = () => {
+    // Fonction pour vérifier les saisies avant la navigation
     const tmpErrorValues = {
+      // Objet temporaire pour stocker les messages d'erreur
       name: "",
       description: "",
       selectedDataCard: "",
       selectedExperience: "",
     };
-    let error = false;
+    let error = false; // Variable pour suivre s'il y a des erreurs
 
+    // Vérifier les conditions de longueur du nom du projet
     if (name.length < 3) {
       tmpErrorValues.name =
         "Le nom du projet doit contenir au moins 3 caractères";
@@ -228,22 +227,27 @@ export default NewProjectScreen = ({ navigation }) => {
         "Le nom du projet doit contenir au maximum 25 caractères";
       error = true;
     }
+
+    // Vérifier si au moins une carte de données est sélectionnée
     if (selectedDataCard.length < 1) {
       tmpErrorValues.selectedDataCard =
         "Veuillez choisir au moins une data card";
       error = true;
     }
+
+    // Vérifier si au moins une expérience est sélectionnée
     if (selectedExperience.length < 1) {
       tmpErrorValues.selectedExperience =
         "Veuillez choisir au moins une expérience";
       error = true;
     }
 
+    // Mettre à jour l'état des messages d'erreur
     OnChangeErrorMessgaes(tmpErrorValues);
     setErrorValue(error);
 
     if (!error) {
-      // resetValues();
+      // S'il n'y a pas d'erreurs, définir les informations du projet et naviguer vers "ProjectScreen"
       const projectInformation = {
         name: name,
         description: description,

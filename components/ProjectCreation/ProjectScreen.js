@@ -122,7 +122,7 @@ export default ProjectScreen = ({ navigation, route }) => {
             color="#82B4DD"
           />
           <Text style={styles.title}>{name}</Text>
-          {!fromDb && (
+          {!fromDb ? (
             <TouchableOpacity
               style={styles.validationButton}
               onPress={() => handleSubmission()}
@@ -131,6 +131,16 @@ export default ProjectScreen = ({ navigation, route }) => {
               <View style={{ alignItems: "center", justifyContent: "center" }}>
                 <MaterialCommunityIcons
                   name="check"
+                  size={20}
+                  color="#6759F4"
+                />
+              </View>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.validationButton}>
+              <View style={{ alignItems: "center", justifyContent: "center" }}>
+                <MaterialCommunityIcons
+                  name="database-arrow-down"
                   size={20}
                   color="#6759F4"
                 />
@@ -161,6 +171,7 @@ export default ProjectScreen = ({ navigation, route }) => {
               item={item}
               fromDb={fromDb}
               navigation={navigation}
+              projectName={name}
             />
           )}
           keyExtractor={(item) => item.id}

@@ -14,7 +14,7 @@ import {
 } from "../staticVariables/CommonVaribales";
 
 const ConfrontationObject = (props) => {
-  const { item, navigation, fromDb } = props;
+  const { item, navigation, fromDb, projectName } = props;
   const values = item.values;
   const experience = StaticExperiences.find(
     (el) => el.experience === values[0]
@@ -51,6 +51,7 @@ const ConfrontationObject = (props) => {
             experience: experience,
             item: item,
             fromDb: fromDb,
+            projectName: projectName,
           })
         }
       >

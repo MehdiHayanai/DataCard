@@ -21,7 +21,7 @@ import { editConfrontationText } from "../../data/dataCatdDb";
 import { AICompletion } from "../../data/dataFromAI";
 
 const ConfrontationTemplate = ({ navigation, route }) => {
-  const { datacard, experience, item, fromDb } = route.params;
+  const { datacard, experience, item, fromDb, projectName } = route.params;
   const [AIButtonDisabled, setAIButtonDisabled] = useState(false);
   const [confrontation, onChangeConfrontation] = useState("");
   const placeholder =
@@ -48,7 +48,7 @@ const ConfrontationTemplate = ({ navigation, route }) => {
 
   const handleAICompletion = () => {
     setAIButtonDisabled(true);
-    AICompletion("sac à dos intelligent", datacard.name, experience.experience)
+    AICompletion(projectName, datacard.name, experience.experience)
       .then((data) => {
         onChangeConfrontation(data);
       })

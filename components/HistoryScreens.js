@@ -59,11 +59,11 @@ export default HistoryScreens = ({ navigation }) => {
       });
     showProjects();
     showConfrontations();
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "HistoriqueScreen" }],
+    });
   };
-
-  const testAPICall = () => {
-    
-  }
 
   useEffect(() => {
     showProjects();
