@@ -562,3 +562,20 @@ export const editConfrontationText = (confrontationId, confrontationText) => {
     });
   });
 };
+
+export const deleteProjectById = (projectId) => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        `DELETE FROM project WHERE id = ?`,
+        [projectId],
+        (_, { rows: { _array } }) => {
+          resolve("Project deleted");
+        },
+        (_, error) => {
+          reject(error);
+        }
+      );
+    });
+  });
+};

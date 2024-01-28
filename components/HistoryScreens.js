@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
+  DeviceEventEmitter,
 } from "react-native";
 import {
   getConfrontations,
@@ -60,6 +61,11 @@ export default HistoryScreens = ({ navigation }) => {
       routes: [{ name: "HistoriqueScreen" }],
     });
   };
+
+  DeviceEventEmitter.addListener("dataDeletion.data", (text) => {
+    showProjects();
+    showConfrontations();
+  });
 
   useEffect(() => {
     showProjects();

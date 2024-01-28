@@ -1,6 +1,16 @@
-import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
-import { getConfrontationsByProjectId } from "../../data/dataCatdDb";
-import { Entypo, AntDesign } from "@expo/vector-icons";
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  DeviceEventEmitter,
+} from "react-native";
+import {
+  deleteProjectById,
+  getConfrontationsByProjectId,
+} from "../../data/dataCatdDb";
+import { Entypo } from "@expo/vector-icons";
+import { useEffect } from "react";
 
 export const ProjectObject = (props) => {
   const { item, navigation } = props;
@@ -26,6 +36,22 @@ export const ProjectObject = (props) => {
       });
   };
 
+  const handleDeleteProjectById = () => {
+    deleteProjectById(id)
+      .then((data) => {
+        console.log("Project deleted");
+        DeviceEventEmitter.emit("dataDeletion.data", "Project deletion");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    return () => {
+      DeviceEventEmitter.removeAllListeners("dataDeletion.data");
+    };
+  }, []);
   return (
     <TouchableOpacity
       onPress={() => showConfrontations()}
@@ -37,7 +63,10 @@ export const ProjectObject = (props) => {
         <TouchableOpacity style={styles.editButton}>
           {/* <Entypo name="edit" size={20} color="#7FB8E1" /> */}
         </TouchableOpacity>
-        <TouchableOpacity style={styles.deleteButton}>
+        <TouchableOpacity
+          style={styles.deleteButton}
+          onLongPress={() => handleDeleteProjectById()}
+        >
           <Entypo name="cross" size={20} color="#7FB8E1" />
         </TouchableOpacity>
       </View>
