@@ -514,3 +514,51 @@ export const deleteAllConfrontations = () => {
     });
   });
 };
+
+// find all confrontations associated with a project id with the associated datacard and experience names
+export const getConfrontationsByProjectId = (projectId) => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        `SELECT c.id, c.confrontation_content, d.name as datacard_name, e.experience as experience_name FROM confrontation c INNER JOIN datacard d ON c.project_datacard_id = d.id INNER JOIN experience e ON c.project_experience_id = e.id WHERE c.project_id = ?`,
+        [projectId],
+        (_, { rows: { _array } }) => {
+          const confrontations = _array.map(
+            ({
+              id,
+              confrontation_content,
+              datacard_name,
+              experience_name,
+            }) => ({
+              id,
+              confrontation_content,
+              datacard_name,
+              experience_name,
+            })
+          );
+          resolve(confrontations);
+        },
+        (_, error) => {
+          reject(error);
+        }
+      );
+    });
+  });
+};
+
+export const editConfrontationText = (confrontationId, confrontationText) => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        `UPDATE confrontation SET confrontation_content = ? WHERE id = ?`,
+        [confrontationText, confrontationId],
+        (_, { rows: { _array } }) => {
+          resolve("Confrontation text edited");
+        },
+        (_, error) => {
+          reject(error);
+        }
+      );
+    });
+  });
+};

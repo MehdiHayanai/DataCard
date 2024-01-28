@@ -17,9 +17,12 @@ import {
 } from "@expo/vector-icons";
 import DataCardObject from "../ui/DataCardObject";
 import ExperienceObject from "../ui/ExperienceObject";
+import { editConfrontationText } from "../../data/dataCatdDb";
+import { AICompletion } from "../../data/dataFromAI";
 
 const ConfrontationTemplate = ({ navigation, route }) => {
-  const { datacard, experience, item } = route.params;
+  const { datacard, experience, item, fromDb } = route.params;
+  const [AIButtonDisabled, setAIButtonDisabled] = useState(false);
   const [confrontation, onChangeConfrontation] = useState("");
   const placeholder =
     "Confronter l'expérience de " +
@@ -31,7 +34,28 @@ const ConfrontationTemplate = ({ navigation, route }) => {
   const handleEmition = () => {
     item["confrontationText"] = confrontation;
     DeviceEventEmitter.emit("confrontation.data", item);
+    if (fromDb) {
+      editConfrontationText(item.id, confrontation)
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
     navigation.goBack();
+  };
+
+  const handleAICompletion = () => {
+    setAIButtonDisabled(true);
+    AICompletion("sac à dos intelligent", datacard.name, experience.experience)
+      .then((data) => {
+        onChangeConfrontation(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setAIButtonDisabled(false);
   };
   useEffect(() => {
     if (item.confrontationText !== "") {
@@ -90,14 +114,19 @@ const ConfrontationTemplate = ({ navigation, route }) => {
         onPress={() => handleEmition()}
       >
         <View style={{ alignItems: "center", justifyContent: "center" }}>
-          <FontAwesome5 name="check" size={35} color="#6759F4" />
+          {fromDb ? (
+            <Entypo name="edit" size={35} color="#6759F4" />
+          ) : (
+            <FontAwesome5 name="check" size={35} color="#6759F4" />
+          )}
         </View>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.aiButton}
         onPressOut={() => {
-          console.log("Ai answer");
+          handleAICompletion();
         }}
+        disabled={AIButtonDisabled}
       >
         <View style={{ alignItems: "center", justifyContent: "center" }}>
           <MaterialCommunityIcons

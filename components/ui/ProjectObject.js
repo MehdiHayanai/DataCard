@@ -1,12 +1,33 @@
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { getConfrontationsByProjectId } from "../../data/dataCatdDb";
 
 export const ProjectObject = (props) => {
   const { item, navigation } = props;
   const { name, description, id } = item;
 
+  const itemDataFromDB = {
+    id: id,
+    name: name,
+    description: description,
+    fromDb: true,
+    confrontationData: null,
+  };
+
+  const showConfrontations = () => {
+    getConfrontationsByProjectId(id)
+      .then((data) => {
+        itemDataFromDB.confrontationData = data;
+        console.log(itemDataFromDB);
+        navigation.navigate("ProjectScreen", { item: itemDataFromDB });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("Project", { project: item })}
+      onPress={() => showConfrontations()}
       style={styles.project}
     >
       <Text style={styles.projectName}>{name}</Text>

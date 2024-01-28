@@ -61,6 +61,10 @@ export default HistoryScreens = ({ navigation }) => {
     showConfrontations();
   };
 
+  const testAPICall = () => {
+    
+  }
+
   useEffect(() => {
     showProjects();
     showConfrontations();

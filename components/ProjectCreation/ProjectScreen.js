@@ -8,33 +8,44 @@ import {
   DeviceEventEmitter,
 } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import ConfrontationObject from "./ui/ConfrontationObject";
+import ConfrontationObject from "../ui/ConfrontationObject";
 import { useState } from "react";
 import {
   StaticDataCards,
   StaticExperiences,
-} from "./staticVariables/CommonVaribales";
-import { insertProjectAndConfrontations } from "../data/dataCatdDb";
+} from "../staticVariables/CommonVaribales";
+import { insertProjectAndConfrontations } from "../../data/dataCatdDb";
 
 // Définition du composant ProjectScreen
 export default ProjectScreen = ({ navigation, route }) => {
   // Extraction des paramètres de l'objet route.params.item
-  const { name, description, selectedDataCard, selectedExperience } =
+  const { name, description, selectedDataCard, selectedExperience, fromDb } =
     route.params.item;
   // Initialisation des variables nécessaires pour les combinaisons
   const combinaisons = [];
   let combIndex = 0;
 
-  // Création des combinaisons entre les expériences et les cartes de données sélectionnées
-  for (let i = 0; i < selectedExperience.length; i++) {
-    for (let j = 0; j < selectedDataCard.length; j++) {
-      combinaisons.push({
-        id: combIndex,
-        values: [selectedExperience[i], selectedDataCard[j]],
-        confrontationText: "",
-      });
-      combIndex++;
+  if (!fromDb) {
+    // Création des combinaisons entre les expériences et les cartes de données sélectionnées
+    for (let i = 0; i < selectedExperience.length; i++) {
+      for (let j = 0; j < selectedDataCard.length; j++) {
+        combinaisons.push({
+          id: combIndex,
+          values: [selectedExperience[i], selectedDataCard[j]],
+          confrontationText: "",
+        });
+        combIndex++;
+      }
     }
+  } else {
+    let { confrontationData } = route.params.item;
+    confrontationData.forEach((el) => {
+      combinaisons.push({
+        id: el.id,
+        values: [el.experience_name, el.datacard_name],
+        confrontationText: el.confrontation_content,
+      });
+    });
   }
 
   // Utilisation du hook d'état pour les combinaisons
@@ -111,15 +122,21 @@ export default ProjectScreen = ({ navigation, route }) => {
             color="#82B4DD"
           />
           <Text style={styles.title}>{name}</Text>
-          <TouchableOpacity
-            style={styles.validationButton}
-            onPress={() => handleSubmission()}
-            disabled={validationButton}
-          >
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <MaterialCommunityIcons name="check" size={20} color="#6759F4" />
-            </View>
-          </TouchableOpacity>
+          {!fromDb && (
+            <TouchableOpacity
+              style={styles.validationButton}
+              onPress={() => handleSubmission()}
+              disabled={validationButton}
+            >
+              <View style={{ alignItems: "center", justifyContent: "center" }}>
+                <MaterialCommunityIcons
+                  name="check"
+                  size={20}
+                  color="#6759F4"
+                />
+              </View>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
       <View
@@ -142,6 +159,7 @@ export default ProjectScreen = ({ navigation, route }) => {
             <ConfrontationObject
               key={item.id}
               item={item}
+              fromDb={fromDb}
               navigation={navigation}
             />
           )}

@@ -17,91 +17,91 @@ import {
 import {
   StaticDataCards,
   StaticExperiences,
-} from "./staticVariables/CommonVaribales";
+} from "../staticVariables/CommonVaribales";
 
 const data = [
   {
     key: "0",
     value: "Humidity",
-    icon: require("../assets/experienceIcons/humidite.png"),
+    icon: require("../../assets/experienceIcons/humidite.png"),
     color: "#C2FEFE",
   },
   {
     key: "1",
     value: "Temperature",
-    icon: require("../assets/experienceIcons/temperature.png"),
+    icon: require("../../assets/experienceIcons/temperature.png"),
     color: "#FD9093",
   },
   {
     key: "2",
     value: "Contact",
-    icon: require("../assets/experienceIcons/contact.png"),
+    icon: require("../../assets/experienceIcons/contact.png"),
     color: "#C3FFDD",
   },
   {
     key: "3",
     value: "Gas",
-    icon: require("../assets/experienceIcons/gaz.png"),
+    icon: require("../../assets/experienceIcons/gaz.png"),
     color: "#E4C2F6",
   },
   {
     key: "4",
     value: "Orientation",
-    icon: require("../assets/experienceIcons/orientation.png"),
+    icon: require("../../assets/experienceIcons/orientation.png"),
     color: "#C2CAFC",
   },
   {
     key: "6",
     value: "Force",
-    icon: require("../assets/experienceIcons/force.png"),
+    icon: require("../../assets/experienceIcons/force.png"),
     color: "#CFF380",
   },
   {
     key: "5",
     value: "Brightness",
-    icon: require("../assets/experienceIcons/luminosite.png"),
+    icon: require("../../assets/experienceIcons/luminosite.png"),
     color: "#C2FEFE",
   },
   {
     key: "7",
     value: "Elevation",
-    icon: require("../assets/experienceIcons/elevation.png"),
+    icon: require("../../assets/experienceIcons/elevation.png"),
     color: "#82B4DD",
   },
   {
     key: "8",
     value: "Color",
-    icon: require("../assets/experienceIcons/color.png"),
+    icon: require("../../assets/experienceIcons/color.png"),
     color: "#8CE7D4",
   },
   {
     key: "9",
     value: "Position",
-    icon: require("../assets/experienceIcons/position.png"),
+    icon: require("../../assets/experienceIcons/position.png"),
     color: "#C2CAFC",
   },
   {
     key: "10",
     value: "Proximity",
-    icon: require("../assets/experienceIcons/proximite.png"),
+    icon: require("../../assets/experienceIcons/proximite.png"),
     color: "#C2FEFE",
   },
   {
     key: "11",
     value: "Sound",
-    icon: require("../assets/experienceIcons/son.png"),
+    icon: require("../../assets/experienceIcons/son.png"),
     color: "#E9CF36",
   },
   {
     key: "12",
     value: "Vibration",
-    icon: require("../assets/experienceIcons/vibration.png"),
+    icon: require("../../assets/experienceIcons/vibration.png"),
     color: "#82B4DD",
   },
   {
     key: "13",
     value: "Speed",
-    icon: require("../assets/experienceIcons/vitesse.png"),
+    icon: require("../../assets/experienceIcons/vitesse.png"),
     color: "#8CE7D4",
   },
 ];
@@ -249,6 +249,7 @@ export default NewProjectScreen = ({ navigation }) => {
         description: description,
         selectedDataCard: selectedDataCard,
         selectedExperience: selectedExperience,
+        fromDb: false,
       };
       navigation.navigate("ProjectScreen", { item: projectInformation });
     }

@@ -1,19 +1,22 @@
-import React, { useEffect } from 'react';
-import { Text, SafeAreaView, StyleSheet, View, useWindowDimensions } from 'react-native';
-import ExperienceNavigation from './components/navigationWrapper/ExperienceNavigation';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import DataCardNavigation from './components/navigationWrapper/DataCardNavigation';
-import ProjectNavigation from './components/navigationWrapper/ProjectNavigation';
-import HistoryScreens from './components/HistoryScreens';
-import Header from './components/ui/Header';
-import { Ionicons } from '@expo/vector-icons';
-import { createDatabase } from './data/dataCatdDb';
-
+import React, { useEffect } from "react";
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  useWindowDimensions,
+} from "react-native";
+import ExperienceNavigation from "./components/navigationWrapper/ExperienceNavigation";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import DataCardNavigation from "./components/navigationWrapper/DataCardNavigation";
+import ProjectNavigation from "./components/navigationWrapper/ProjectNavigation";
+import HistoryScreens from "./components/HistoryScreens";
+import Header from "./components/ui/Header";
+import { Ionicons } from "@expo/vector-icons";
+import { createDatabase } from "./data/dataCatdDb";
 
 const Tab = createBottomTabNavigator();
-
-
 
 export default function App() {
   // use hook to get the device's screen dimensions
@@ -21,83 +24,83 @@ export default function App() {
 
   useEffect(() => {
     createDatabase();
-
   }, []);
-
-  
 
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName='ProjectNavigation'
-        screenOptions={
-          ({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
+        initialRouteName="ProjectNavigation"
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
 
-              if (route.name === 'DataCardNavigation') {
-                iconName = 'cube';
-              } else if (route.name === 'ExperienceNavigation') {
-                iconName = 'stats-chart';
-              } else if (route.name === 'ProjectNavigation') {
-                iconName = 'add-circle';
-              } else if (route.name === 'HistoriqueScreen') {
-                iconName = 'book';
-              }
+            if (route.name === "DataCardNavigation") {
+              iconName = "cube";
+            } else if (route.name === "ExperienceNavigation") {
+              iconName = "stats-chart";
+            } else if (route.name === "ProjectNavigation") {
+              iconName = "add-circle";
+            } else if (route.name === "HistoriqueScreen") {
+              iconName = "book";
+            }
 
-              // You can return any component that you like here!
-              return <Ionicons name={iconName} size={26} color={color} />;
-            },
-            tabBarActiveTintColor: '#7FB8E1',
-            tabBarInactiveTintColor: '#BABEC2',
-            tabBarStyle: {
-              backgroundColor: '#F5F5F5',
-              paddingBottom: 10,
-              height: 70,                         
-            },
-            tabBarLabelStyle: {
-              fontSize: 12,
-              marginTop: -5,
-            },
-            tabBarHideOnKeyboard : true,
-            headerTintColor: '#7FB8E1',
-            headerStyle: {
-              height: height*0.13, 
-            },
-
-          })
-        }
-
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={26} color={color} />;
+          },
+          tabBarActiveTintColor: "#7FB8E1",
+          tabBarInactiveTintColor: "#BABEC2",
+          tabBarStyle: {
+            backgroundColor: "#F5F5F5",
+            paddingBottom: 10,
+            height: 70,
+          },
+          tabBarLabelStyle: {
+            fontSize: 12,
+            marginTop: -5,
+          },
+          tabBarHideOnKeyboard: true,
+          headerTintColor: "#7FB8E1",
+          headerStyle: {
+            height: height * 0.13,
+          },
+        })}
       >
-        <Tab.Screen name="DataCardNavigation"  component={DataCardNavigation} 
+        <Tab.Screen
+          name="DataCardNavigation"
+          component={DataCardNavigation}
           options={{
-            title: 'Data Cards',
-            tabBarLabel: 'Data Cards',
-            headerTitle: (props) => <Header {...props} title={"Data Cards"} /> 
-
+            title: "Data Cards",
+            tabBarLabel: "Data Cards",
+            headerTitle: (props) => <Header {...props} title={"Data Cards"} />,
           }}
         />
-        <Tab.Screen name="ExperienceNavigation" component={ExperienceNavigation} 
+        <Tab.Screen
+          name="ExperienceNavigation"
+          component={ExperienceNavigation}
           options={{
-            title: 'Experience',
-            tabBarLabel: 'Experience',
-            headerTitle: (props) => <Header {...props} title={"Experience"} /> 
-
+            title: "Experience",
+            tabBarLabel: "Experience",
+            headerTitle: (props) => <Header {...props} title={"Experience"} />,
           }}
         />
-        <Tab.Screen name="ProjectNavigation" component={ProjectNavigation} 
+        <Tab.Screen
+          name="ProjectNavigation"
+          component={ProjectNavigation}
           options={{
-            title: 'Projects',
-            tabBarLabel: 'Projects',
-            headerTitle: (props) => <Header {...props} title={"Nouveau projet"} /> 
-
+            title: "Projects",
+            tabBarLabel: "Projects",
+            headerTitle: (props) => (
+              <Header {...props} title={"Nouveau projet"} />
+            ),
           }}
         />
-        <Tab.Screen name="HistoriqueScreen" component={HistoryScreens} 
+        <Tab.Screen
+          name="HistoriqueScreen"
+          component={HistoryScreens}
           options={{
-            title: 'Historique',
-            tabBarLabel: 'Historique',
-            headerTitle: (props) => <Header {...props} title={"Historique"} /> 
+            title: "Historique",
+            tabBarLabel: "Historique",
+            headerTitle: (props) => <Header {...props} title={"Historique"} />,
           }}
         />
       </Tab.Navigator>
@@ -108,7 +111,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: "#ecf0f1",
     padding: 0,
     margin: 0,
   },
@@ -117,6 +120,5 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     alignItems: "center",
-  }
-
+  },
 });
