@@ -15,6 +15,7 @@ import {
   StaticExperiences,
 } from "../staticVariables/CommonVaribales";
 import { insertProjectAndConfrontations } from "../../data/dataCatdDb";
+import { CommonActions } from "@react-navigation/native";
 
 // Définition du composant ProjectScreen
 export default ProjectScreen = ({ navigation, route }) => {
@@ -88,10 +89,8 @@ export default ProjectScreen = ({ navigation, route }) => {
         console.log("ID du projet:", projectId);
         console.log("IDs des confrontations:", confrontationIds);
         // Redirection vers l'écran HistoriqueScreen après la soumission réussie
-        navigation.reset({
-          index: 0,
-          routes: [{ name: "HistoriqueScreen" }],
-        });
+        navigation.popToTop();
+        navigation.navigate("HistoriqueScreen", { reload: true });
       })
       .catch((error) => {
         console.error(

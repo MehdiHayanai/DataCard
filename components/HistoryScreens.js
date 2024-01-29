@@ -15,12 +15,13 @@ import {
 import { useEffect, useState } from "react";
 import { ProjectObject } from "./ui/ProjectObject";
 import { Ionicons } from "@expo/vector-icons";
+import { useIsFocused } from "@react-navigation/native";
 
-export default HistoryScreens = ({ navigation }) => {
+export default HistoryScreens = ({ navigation, route }) => {
   const [projects, setProjects] = useState([]);
+  const isFocused = useIsFocused();
 
   const showProjects = () => {
-    console.log("Test");
     getProjects()
       .then((data) => {
         console.log(data);
@@ -59,15 +60,18 @@ export default HistoryScreens = ({ navigation }) => {
       });
     showProjects();
     showConfrontations();
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "HistoriqueScreen" }],
-    });
   };
 
   useEffect(() => {
     showProjects();
     showConfrontations();
+    if (isFocused) {
+      console.log(route.params);
+      if (route.params && route.params.reload) {
+        showProjects();
+      }
+      // Your code here
+    }
   }, []);
 
   return (
