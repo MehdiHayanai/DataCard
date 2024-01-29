@@ -562,3 +562,44 @@ export const editConfrontationText = (confrontationId, confrontationText) => {
     });
   });
 };
+
+export const checkForProjectName = (projectName) => {
+  // check if name in lower case exists
+  // if so, return true
+  // else, return false
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        `SELECT * FROM project WHERE LOWER(name) = ?`,
+        [projectName.toLowerCase()],
+        (_, { rows: { _array } }) => {
+          if (_array.length > 0) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        },
+        (_, error) => {
+          reject(error);
+        }
+      );
+    });
+  });
+};
+
+export const deleteProjectById = (id) => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        `DELETE FROM project WHERE id = ?`,
+        [id],
+        (_, { rows: { _array } }) => {
+          resolve("Project deleted");
+        },
+        (_, error) => {
+          reject(error);
+        }
+      );
+    });
+  });
+};

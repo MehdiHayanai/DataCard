@@ -1,8 +1,9 @@
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
 import { getConfrontationsByProjectId } from "../../data/dataCatdDb";
+import { Entypo } from "@expo/vector-icons";
 
 export const ProjectObject = (props) => {
-  const { item, navigation } = props;
+  const { item, navigation, deleteProjectByIdFromHistory } = props;
   const { name, description, id } = item;
 
   const itemDataFromDB = {
@@ -32,6 +33,17 @@ export const ProjectObject = (props) => {
     >
       <Text style={styles.projectName}>{name}</Text>
       <Text style={styles.projectDescription}>{description}</Text>
+      <View style={styles.deleteRegion}>
+        <TouchableOpacity
+          style={styles.deleteButton}
+          onLongPress={() => {
+            deleteProjectByIdFromHistory(id);
+          }}
+          delayLongPress={1500}
+        >
+          <Entypo name="cross" size={20} color="#7FB8E1" />
+        </TouchableOpacity>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -55,5 +67,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "Roboto",
     color: "#BABEC2",
+  },
+  deleteRegion: {
+    position: "absolute",
+    right: 10,
+    top: 10,
+  },
+  deleteButton: {
+    backgroundColor: "#FAFAFA",
+    borderWidth: 1,
+    borderRadius: 50,
+    borderColor: "#7FB8E1",
+    padding: 3,
+    opacity: 0.8,
   },
 });

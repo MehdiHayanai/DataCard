@@ -105,7 +105,9 @@ export default ProjectScreen = ({ navigation, route }) => {
   DeviceEventEmitter.addListener("confrontation.data", (data) => {
     let combinaisonsListCopy = combinaisonsList;
     let editedElement = combinaisonsListCopy.find((el) => el.id === data.id);
-    editedElement.confrontationText = data.confrontationText;
+    if (editedElement && editedElement.confrontationText) {
+      editedElement.confrontationText = data.confrontationText;
+    }
     setCombinaisonsList(combinaisonsListCopy);
   });
 
@@ -225,7 +227,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     width: "100%",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
   icon: {
     marginRight: 10,

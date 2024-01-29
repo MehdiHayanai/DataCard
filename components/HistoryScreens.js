@@ -11,6 +11,7 @@ import {
   getProjects,
   deleteAllProjects,
   deleteAllConfrontations,
+  deleteProjectById,
 } from "../data/dataCatdDb";
 import { useEffect, useState } from "react";
 import { ProjectObject } from "./ui/ProjectObject";
@@ -62,6 +63,17 @@ export default HistoryScreens = ({ navigation, route }) => {
     showConfrontations();
   };
 
+  const deleteProjectByIdFromHistory = (id) => {
+    deleteProjectById(id)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    showProjects();
+  };
+
   useEffect(() => {
     showProjects();
     showConfrontations();
@@ -83,7 +95,11 @@ export default HistoryScreens = ({ navigation, route }) => {
             style={styles.projectList}
             data={projects}
             renderItem={({ item }) => (
-              <ProjectObject item={item} navigation={navigation} />
+              <ProjectObject
+                item={item}
+                navigation={navigation}
+                deleteProjectByIdFromHistory={deleteProjectByIdFromHistory}
+              />
             )}
             keyExtractor={(item) => item.id}
           />

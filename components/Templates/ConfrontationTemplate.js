@@ -61,9 +61,6 @@ const ConfrontationTemplate = ({ navigation, route }) => {
     if (item.confrontationText !== "") {
       onChangeConfrontation(item.confrontationText);
     }
-    return () => {
-      DeviceEventEmitter.removeAllListeners("confrontation.data");
-    };
   }, []);
 
   return (

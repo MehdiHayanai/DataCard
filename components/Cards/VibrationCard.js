@@ -50,7 +50,7 @@ export default VibrationCard = ({ navigation }) => {
     _subscribe();
     return () => _unsubscribe();
   }, []);
-
+;     
   useEffect(() => {
     const dataLength = accelerationData.length;
     const startIndex = dataLength > 100 ? dataLength - 100 : 0;

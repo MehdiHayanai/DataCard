@@ -13,6 +13,7 @@ import {
   StaticDataCards,
   StaticExperiences,
 } from "../staticVariables/CommonVaribales";
+import { checkForProjectName } from "../../data/dataCatdDb";
 
 const data = [
   {
@@ -227,36 +228,50 @@ export default NewProjectScreen = ({ navigation }) => {
         "Le nom du projet doit contenir au maximum 25 caractères";
       error = true;
     }
+    // check if the project name already exists transform to lower and delete leading and trailing spaces
+    console.log("Check for name");
+    const nameLower = name.toLowerCase();
+    checkForProjectName(nameLower)
+      .then((nameExists) => {
+        console.log(nameExists);
+        if (nameExists) {
+          tmpErrorValues.name = "Le nom du projet existe déjà";
+          error = true;
+        } else {
+          console.log("name does not exist");
+        }
+      })
+      .then(() => {
+        // Vérifier si au moins une carte de données est sélectionnée
+        if (selectedDataCard.length < 1) {
+          tmpErrorValues.selectedDataCard =
+            "Veuillez choisir au moins une data card";
+          error = true;
+        }
 
-    // Vérifier si au moins une carte de données est sélectionnée
-    if (selectedDataCard.length < 1) {
-      tmpErrorValues.selectedDataCard =
-        "Veuillez choisir au moins une data card";
-      error = true;
-    }
+        // Vérifier si au moins une expérience est sélectionnée
+        if (selectedExperience.length < 1) {
+          tmpErrorValues.selectedExperience =
+            "Veuillez choisir au moins une expérience";
+          error = true;
+        }
 
-    // Vérifier si au moins une expérience est sélectionnée
-    if (selectedExperience.length < 1) {
-      tmpErrorValues.selectedExperience =
-        "Veuillez choisir au moins une expérience";
-      error = true;
-    }
+        // Mettre à jour l'état des messages d'erreur
+        OnChangeErrorMessgaes(tmpErrorValues);
+        setErrorValue(error);
 
-    // Mettre à jour l'état des messages d'erreur
-    OnChangeErrorMessgaes(tmpErrorValues);
-    setErrorValue(error);
-
-    if (!error) {
-      // S'il n'y a pas d'erreurs, définir les informations du projet et naviguer vers "ProjectScreen"
-      const projectInformation = {
-        name: name,
-        description: description,
-        selectedDataCard: selectedDataCard,
-        selectedExperience: selectedExperience,
-        fromDb: false,
-      };
-      navigation.navigate("ProjectScreen", { item: projectInformation });
-    }
+        if (!error) {
+          // S'il n'y a pas d'erreurs, définir les informations du projet et naviguer vers "ProjectScreen"
+          const projectInformation = {
+            name: name,
+            description: description,
+            selectedDataCard: selectedDataCard,
+            selectedExperience: selectedExperience,
+            fromDb: false,
+          };
+          navigation.navigate("ProjectScreen", { item: projectInformation });
+        }
+      });
   };
 
   return (
