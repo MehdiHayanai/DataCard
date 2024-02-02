@@ -329,7 +329,6 @@ export default NewProjectScreen = ({ navigation }) => {
                 badgeStyles={{
                   backgroundColor: "#82B4DD",
                 }}
-                onSelect={() => console.log()}
                 label="Categories"
                 placeholder="Data cards"
                 boxStyles={[
@@ -361,7 +360,6 @@ export default NewProjectScreen = ({ navigation }) => {
                 badgeStyles={{
                   backgroundColor: "#82B4DD",
                 }}
-                onSelect={() => console.log()}
                 label="Categories"
                 boxStyles={[
                   { borderColor: "#c0c4c1", borderWidth: 1, borderRadius: 5 },

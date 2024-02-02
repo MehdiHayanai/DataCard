@@ -26,9 +26,7 @@ export default function Header({ props, title }) {
         <FontAwesome5 name="user-alt" size={25} color="#7FB8E1" />
       </TouchableOpacity>
       <Text style={styles.titleStyle}>{title}</Text>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("DataCardNavigation")}
-      >
+      <TouchableOpacity onPress={() => navigation.navigate("SettingScreen")}>
         <FontAwesome name="gear" size={28} color="#7FB8E1" />
       </TouchableOpacity>
     </View>

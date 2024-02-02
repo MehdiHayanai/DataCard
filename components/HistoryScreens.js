@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
+  DeviceEventEmitter,
 } from "react-native";
 import {
   getConfrontations,
@@ -25,7 +26,6 @@ export default HistoryScreens = ({ navigation, route }) => {
   const showProjects = () => {
     getProjects()
       .then((data) => {
-        console.log(data);
         setProjects(data);
       })
       .catch((error) => {
@@ -34,11 +34,9 @@ export default HistoryScreens = ({ navigation, route }) => {
   };
 
   const showConfrontations = () => {
-    console.log("Test confrontation");
-
     getConfrontations()
       .then((data) => {
-        console.log(data);
+        console.log("Confrontation data loaded");
       })
       .catch((error) => {
         console.error(error);
@@ -47,14 +45,14 @@ export default HistoryScreens = ({ navigation, route }) => {
   const deleteAll = () => {
     deleteAllProjects()
       .then((data) => {
-        console.log(data);
+        console.log("Data deleted from projects");
       })
       .catch((error) => {
         console.error(error);
       });
     deleteAllConfrontations()
       .then((data) => {
-        console.log(data);
+        console.log("Data deleted from confrontations");
       })
       .catch((error) => {
         console.error(error);
@@ -73,6 +71,11 @@ export default HistoryScreens = ({ navigation, route }) => {
       });
     showProjects();
   };
+
+  DeviceEventEmitter.addListener("dataDeletion.data", (text) => {
+    showProjects();
+    showConfrontations();
+  });
 
   useEffect(() => {
     showProjects();

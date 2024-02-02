@@ -1,6 +1,16 @@
-import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
-import { getConfrontationsByProjectId } from "../../data/dataCatdDb";
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  DeviceEventEmitter,
+} from "react-native";
+import {
+  deleteProjectById,
+  getConfrontationsByProjectId,
+} from "../../data/dataCatdDb";
 import { Entypo } from "@expo/vector-icons";
+import { useEffect } from "react";
 
 export const ProjectObject = (props) => {
   const { item, navigation, deleteProjectByIdFromHistory } = props;
@@ -26,6 +36,22 @@ export const ProjectObject = (props) => {
       });
   };
 
+  const handleDeleteProjectById = () => {
+    deleteProjectById(id)
+      .then((data) => {
+        console.log("Project deleted");
+        DeviceEventEmitter.emit("dataDeletion.data", "Project deletion");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    return () => {
+      DeviceEventEmitter.removeAllListeners("dataDeletion.data");
+    };
+  }, []);
   return (
     <TouchableOpacity
       onPress={() => showConfrontations()}
@@ -33,13 +59,13 @@ export const ProjectObject = (props) => {
     >
       <Text style={styles.projectName}>{name}</Text>
       <Text style={styles.projectDescription}>{description}</Text>
-      <View style={styles.deleteRegion}>
+      <View style={styles.editionSection}>
+        <TouchableOpacity style={styles.editButton}>
+          {/* <Entypo name="edit" size={20} color="#7FB8E1" /> */}
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.deleteButton}
-          onLongPress={() => {
-            deleteProjectByIdFromHistory(id);
-          }}
-          delayLongPress={1500}
+          onLongPress={() => handleDeleteProjectById()}
         >
           <Entypo name="cross" size={20} color="#7FB8E1" />
         </TouchableOpacity>
@@ -68,17 +94,17 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     color: "#BABEC2",
   },
-  deleteRegion: {
+  editionSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 15,
     position: "absolute",
-    right: 10,
-    top: 10,
+    right: 12,
+    top: 3,
   },
   deleteButton: {
-    backgroundColor: "#FAFAFA",
-    borderWidth: 1,
-    borderRadius: 50,
-    borderColor: "#7FB8E1",
-    padding: 3,
-    opacity: 0.8,
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: "#f7f5f5",
   },
 });

@@ -19,6 +19,7 @@ import TemperatureCard from "../Cards/TemperatureCard";
 import VibrationCard from "../Cards/VibrationCard";
 import HumidityCard from "../Cards/HumidityCard";
 import ConfrontationTemplate from "../Templates/ConfrontationTemplate";
+import SettingScreen from "../SettingScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -165,6 +166,13 @@ export default function ProjectNavigation() {
       <Stack.Screen
         name="ConfrontationTemplate"
         component={ConfrontationTemplate}
+        options={{
+          title: "",
+        }}
+      />
+      <Stack.Screen
+        name="SettingScreen"
+        component={SettingScreen}
         options={{
           title: "",
         }}

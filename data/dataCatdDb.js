@@ -594,7 +594,17 @@ export const deleteProjectById = (id) => {
         `DELETE FROM project WHERE id = ?`,
         [id],
         (_, { rows: { _array } }) => {
-          resolve("Project deleted");
+          // delete confrontation where project_id = id
+          tx.executeSql(
+            `DELETE FROM confrontation WHERE project_id = ?`,
+            [id],
+            (_, { rows: { _array } }) => {
+              resolve("Project deleted");
+            },
+            (_, error) => {
+              reject(error);
+            }
+          );
         },
         (_, error) => {
           reject(error);
