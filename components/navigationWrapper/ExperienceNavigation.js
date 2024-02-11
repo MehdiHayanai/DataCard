@@ -2,6 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DefinitionScreen from "../Templates/DefinitionScreen";
 import ExperienceScreen from "../ExperienceScreen";
+import SettingScreen from "../SettingScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,13 @@ export default function ExperienceNavigation() {
       <Stack.Screen
         name="DefinitionScreen"
         component={DefinitionScreen}
+        options={{
+          title: "",
+        }}
+      />
+      <Stack.Screen
+        name="SettingScreen"
+        component={SettingScreen}
         options={{
           title: "",
         }}
